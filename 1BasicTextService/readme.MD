@@ -1,4 +1,11 @@
-这个例子介绍了如何注册TSF输入法，介绍了系统加载输入法调用的第一个接口。
+## COM组件的四个导出函数
+
+函数|说明
+-|-
+DllGetClassObject|PRIVATE
+DllCanUnloadNow|PRIVATE
+DllRegisterServer|PRIVATE
+DllUnregisterServer|PRIVATE
 
 [BasicTextService](https://github.com/ChineseInputMethod/TSFexample/tree/master/1BasicTextService)
 

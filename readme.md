@@ -1,7 +1,7 @@
-# 微软早期的TSF样例
+## 微软早期的TSF样例
 
 
-## [BasicTextService](https://github.com/ChineseInputMethod/TSFexample/tree/master/1BasicTextService)
+### [BasicTextService](https://github.com/ChineseInputMethod/TSFexample/tree/master/1BasicTextService)
 
 演示如何注册TSF输入法以及介绍激活输入法的接口
 
