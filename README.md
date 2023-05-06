@@ -5,8 +5,8 @@
 
 演示如何注册TSF输入法以及介绍激活输入法的接口
 
-Interface     | Description
--------- | -----
+Interface|Description
+-|-
 ITfInputProcessorProfiles  | TSF和IME输入法一样，都是DLL。IME是通过导出函数实现的输入法功能，而TSF输入法的功能是在COM接口中完成的。
 ITfTextInputProcessor  | TSF是一个COM组件。不但要实现相应的TSF框架接口，而且一些输入法功能，也是Windows通过相应接口提供的。
 Text Service  | 客户程序和文本服务通过TSF管理器实现管理。客户程序与文本服务不直接发生交互。
