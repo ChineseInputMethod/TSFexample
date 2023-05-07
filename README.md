@@ -6,13 +6,13 @@
 
 请按工程名的数字顺序阅读，附加的两个工程无先后顺序。
 
-### 2.1 [BasicTextService](https://github.com/ChineseInputMethod/TSFexample/tree/master/1BasicTextService)
+## 2.1 [BasicTextService](https://github.com/ChineseInputMethod/TSFexample/tree/master/1BasicTextService)
 
 演示如何注册TSF输入法以及介绍激活输入法的接口
 
 Interface					|Description
 -|-
-ITfInputProcessorProfiles	|注册TextInputProcessor。（可以视同注册输入法）
+ITfInputProcessorProfiles	|注册TextInputProcessor。（可以视同为注册输入法）
 ITfTextInputProcessor		|激活文本服务。（可以看成输入法被激活的第一个接口）
 
 ### 2.1 [BasicTextService](https://github.com/ChineseInputMethod/TSFexample/tree/master/1BasicTextService)
