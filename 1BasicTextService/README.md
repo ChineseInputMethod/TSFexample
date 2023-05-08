@@ -1,4 +1,4 @@
-## 2.1.0 文件结构
+## 2.1.0 主要文件结构
 
 - DllMain.cpp
 - Server.cpp
@@ -50,6 +50,30 @@ regsvr32.exe会调用DllRegisterServer导出函数。之间还经历了COM库的
 
 ## 2.1.4 注册COM组件
 
+FSF框架由TSF管理器和应用程序，以及文本服务组成。文本服务，在篇文章中特指输入法。输入法在TSF框架中实现为COM服务器。
+所以注册输入法的第一步，要把输入法注册为一个COM组件。
+```C++
+#include <Windows.h>
+#include <stdio.h>
+#pragma comment(lib,"imm32.lib")
+int main(int argc, char* argv[])
+{
+	HKL IME = ImmInstallIME(L"shurufa.ime", L"输入法");
+	if (IME == 0)
+	{
+		printf("安装失败\n");
+	}
+	else
+	{
+		printf("安装成功！\n");
+	}
+	printf("按任意键退出!\n");
+	getchar();
+	return 0;
+}
+```
+HKEY_CLASSES_ROOT\CLSID\{E7EA138E-69F8-11D7-A6EA-00065B84435C}
+![debug](img/CLSID.png)
 ## 2.1.5 注册Text Input Processor
 
 ## 2.1.6 注册TSF类别
