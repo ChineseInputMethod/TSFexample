@@ -138,6 +138,7 @@ STDAPI_(ULONG) CTextService::Release()
 
 STDAPI CTextService::Activate(ITfThreadMgr *pThreadMgr, TfClientId tfClientId)
 {
+//    MessageBox(NULL, "∆Ù∂Ø ‰»Î∑®", NULL, MB_OK);
     return S_OK;
 }
 

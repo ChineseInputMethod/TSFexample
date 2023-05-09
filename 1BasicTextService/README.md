@@ -72,7 +72,7 @@ FSF框架由TSF管理器和应用程序，以及文本服务组成。文本服�
 ## 2.1.5 注册Text Input Processor
 
 ITfInputProcessorProfiles接口由系统实现，用于注册Text Input Processor。
-其中ITfInputProcessorProfiles::Register(c_clsidTextService)方法，将c_clsidTextService识别为文本服务，本文特指输入法。
+其中ITfInputProcessorProfiles::Register(c_clsidTextService)方法，将c_clsidTextService注册为文本服务，本文特指输入法。
 
 ```C++
     hr = pInputProcessProfiles->Register(c_clsidTextService);
@@ -95,14 +95,41 @@ ITfInputProcessorProfiles接口由系统实现，用于注册Text Input Processo
                                   TEXTSERVICE_ICON_INDEX);
 ```
 
-ITfInputProcessorProfiles::AddLanguageProfile()配置输入法的基本属性。其中宏：
+ITfInputProcessorProfiles::AddLanguageProfile()配置输入法的基本属性。
+
+当前项目不包含注册TSF类别。
+
+至此，当前项目注册完毕。用户可以设置断点，观察详细注册过程。
+
+## 2.1.6 输入法的启动
+
+此时，想要调试输入法的启动过程，会发现跟踪不到输入法被激活。这是因为当前输入法被注册为了美国英语。
+
+将globals.h中的宏TEXTSERVICE_LANGID修改为简体中文
 
 ```C++
->#define TEXTSERVICE_LANGID	MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED)
+//#define TEXTSERVICE_LANGID	MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US)
+#define TEXTSERVICE_LANGID	MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED)
 ```
 
-将文本服务c_clsidTextService，定义为中文输入法。
+在TextService.cpp文件中添加断点
 
-## 2.1.6 注册TSF类别
+![Activate](img/Activate.png)
+
+就可以跟踪到输入法被激活时的演示效果。
+
+>**最好在模拟器中调试输入法，否则很容易将系统搞崩溃。**
 
 ## 2.1.7 ITfTextInputProcessor
+
+调用ITfInputProcessorProfiles接口将输入法注册为文本服务后，TSF管理器会激活注册为当前语言的所有文本服务。
+
+也就是调用由输入法实现的ITfTextInputProcessor接口
+
+在Activate(ITfThreadMgr *pThreadMgr, TfClientId tfClientId)方法中，主要完成三件任务。
+
+1. 保存线程管理器对象
+2. 保存客户ID
+3. 完成当前线程的输入法初始化设置。
+
+
