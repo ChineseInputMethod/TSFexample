@@ -25,9 +25,11 @@
 void DllAddRef();
 void DllRelease();
 
-//#define ARRAYSIZE(a) (sizeof(a)/sizeof(a[0]))
+#ifndef ARRAYSIZE
+#define ARRAYSIZE(a) (sizeof(a)/sizeof(a[0]))
+#endif
 
-#define TEXTSERVICE_LANGID    MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US)
+#define TEXTSERVICE_LANGID	MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED)
 
 #define TEXTSERVICE_DESC    L"Sample Text Service"
 #define TEXTSERVICE_DESC_A   "Sample Text Service"
