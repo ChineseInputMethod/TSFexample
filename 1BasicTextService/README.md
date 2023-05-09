@@ -50,7 +50,9 @@ regsvr32.exe会调用DllRegisterServer导出函数。之间还经历了COM库的
 
 如果要调试32位版本的注册过程，将
 >$(SystemRoot)\system32\regsvr32.exe
+
 改为
+
 >$(SystemRoot)\syswow64\regsvr32.exe
 
 ## 2.1.4 注册COM组件
@@ -61,13 +63,45 @@ FSF框架由TSF管理器和应用程序，以及文本服务组成。文本服�
 因为输入法是进程内组件，所以要分别注册64位和32位版本。
 64位版的COM组件，注册到注册表的以下键中；
 
->HKEY_CLASSES_ROOT\CLSID\{E7EA138E-69F8-11D7-A6EA-00065B84435C}
+>HKEY_CLASSES_ROOT\CLSID\{CLSID}
 
 32位版的要注册到以下键中，使用regsvr32.exe注册，regsvr32.exe会自动完成。
 
->HKEY_CLASSES_ROOT\WOW6432Node\CLSID
+>HKEY_CLASSES_ROOT\WOW6432Node\CLSID\{CLSID}
 
 ## 2.1.5 注册Text Input Processor
+
+ITfInputProcessorProfiles接口由系统实现，用于注册Text Input Processor。
+其中ITfInputProcessorProfiles::Register(c_clsidTextService)方法，将c_clsidTextService识别为文本服务，本文特指输入法。
+
+```C++
+    hr = pInputProcessProfiles->Register(c_clsidTextService);
+
+    if (hr != S_OK)
+        goto Exit;
+
+    cchA = GetModuleFileNameA(g_hInst, achFileNameA, ARRAYSIZE(achFileNameA));
+
+    cchIconFile = MultiByteToWideChar(CP_ACP, 0, achFileNameA, cchA, achIconFile, ARRAYSIZE(achIconFile)-1);
+    achIconFile[cchIconFile] = '\0';
+
+    hr = pInputProcessProfiles->AddLanguageProfile(c_clsidTextService,
+                                  TEXTSERVICE_LANGID, 
+                                  c_guidProfile, 
+                                  TEXTSERVICE_DESC, 
+                                  (ULONG)wcslen(TEXTSERVICE_DESC),
+                                  achIconFile,
+                                  cchIconFile,
+                                  TEXTSERVICE_ICON_INDEX);
+```
+
+ITfInputProcessorProfiles::AddLanguageProfile()配置输入法的基本属性。其中宏：
+
+```C++
+>#define TEXTSERVICE_LANGID	MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED)
+```
+
+将文本服务c_clsidTextService，定义为中文输入法。
 
 ## 2.1.6 注册TSF类别
 

@@ -25,9 +25,7 @@
 void DllAddRef();
 void DllRelease();
 
-#ifndef ARRAYSIZE
-#define ARRAYSIZE(a) (sizeof(a)/sizeof(a[0]))
-#endif
+//#define ARRAYSIZE(a) (sizeof(a)/sizeof(a[0]))
 
 #define TEXTSERVICE_LANGID	MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED)
 
