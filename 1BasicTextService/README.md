@@ -82,13 +82,13 @@ cchIconFile = MultiByteToWideChar(CP_ACP, 0, achFileNameA, cchA, achIconFile, AR
 achIconFile[cchIconFile] = '\0';
 
 hr = pInputProcessProfiles->AddLanguageProfile(c_clsidTextService,
-								TEXTSERVICE_LANGID, 
-								c_guidProfile, 
-								TEXTSERVICE_DESC, 
-								(ULONG)wcslen(TEXTSERVICE_DESC),
-								achIconFile,
-								cchIconFile,
-								TEXTSERVICE_ICON_INDEX);
+							TEXTSERVICE_LANGID, 
+							c_guidProfile, 
+							TEXTSERVICE_DESC, 
+							(ULONG)wcslen(TEXTSERVICE_DESC),
+							achIconFile,
+							cchIconFile,
+							TEXTSERVICE_ICON_INDEX);
 ```
 
 ITfInputProcessorProfiles::AddLanguageProfile()配置输入法的基本属性。
@@ -114,7 +114,9 @@ ITfInputProcessorProfiles::AddLanguageProfile()配置输入法的基本属性。
 
 就可以跟踪到输入法被激活时的演示效果。
 
+
 >**最好在虚拟机中调试输入法，否则很容易将系统搞崩溃。**
+
 
 ## 2.1.7 ITfTextInputProcessor
 
@@ -127,6 +129,7 @@ ITfInputProcessorProfiles::AddLanguageProfile()配置输入法的基本属性。
 1. 保存线程管理器对象
 2. 保存客户ID
 3. 完成当前线程的输入法初始化设置。
+
 
 
 输入法会在所有接收文本服务的进程中被激活，这是调试输入法的难点之一。在下一节中，介绍调试输入法的另外一个难点：跟踪焦点。
