@@ -8,10 +8,11 @@
 
 ## 2.1 [BasicTextService](https://github.com/ChineseInputMethod/TSFexample/tree/master/1BasicTextService)
 
-演示如何注册TSF输入法以及介绍激活输入法的接口
+如何注册TSF输入法以及激活输入法
 
 Interface					|Description
 -|-
 ITfInputProcessorProfiles	|注册TextInputProcessor。（可以视同为注册输入法）
 ITfTextInputProcessor		|激活文本服务。（可以看成输入法被激活的第一个接口）
 
+## 2.2 [TrackFocus](https://github.com/ChineseInputMethod/TSFexample/tree/master/2TrackFocus)

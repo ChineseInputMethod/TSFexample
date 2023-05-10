@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.33328.57
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1BasicTextService", "1BasicTextService\1BasicTextService.vcxproj", "{FD77AC98-5EF4-4758-A6FB-E8E114FE6E68}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2TrackFocus", "2TrackFocus\2TrackFocus.vcxproj", "{021962D4-8724-49F5-84EB-96A5D263465B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{FD77AC98-5EF4-4758-A6FB-E8E114FE6E68}.Release|x64.Build.0 = Release|x64
 		{FD77AC98-5EF4-4758-A6FB-E8E114FE6E68}.Release|x86.ActiveCfg = Release|Win32
 		{FD77AC98-5EF4-4758-A6FB-E8E114FE6E68}.Release|x86.Build.0 = Release|Win32
+		{021962D4-8724-49F5-84EB-96A5D263465B}.Debug|x64.ActiveCfg = Debug|x64
+		{021962D4-8724-49F5-84EB-96A5D263465B}.Debug|x64.Build.0 = Debug|x64
+		{021962D4-8724-49F5-84EB-96A5D263465B}.Debug|x86.ActiveCfg = Debug|Win32
+		{021962D4-8724-49F5-84EB-96A5D263465B}.Debug|x86.Build.0 = Debug|Win32
+		{021962D4-8724-49F5-84EB-96A5D263465B}.Release|x64.ActiveCfg = Release|x64
+		{021962D4-8724-49F5-84EB-96A5D263465B}.Release|x64.Build.0 = Release|x64
+		{021962D4-8724-49F5-84EB-96A5D263465B}.Release|x86.ActiveCfg = Release|Win32
+		{021962D4-8724-49F5-84EB-96A5D263465B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
