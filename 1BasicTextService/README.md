@@ -82,13 +82,13 @@ cchIconFile = MultiByteToWideChar(CP_ACP, 0, achFileNameA, cchA, achIconFile, AR
 achIconFile[cchIconFile] = '\0';
 
 hr = pInputProcessProfiles->AddLanguageProfile(c_clsidTextService,
-							TEXTSERVICE_LANGID, 
-							c_guidProfile, 
-							TEXTSERVICE_DESC, 
-							(ULONG)wcslen(TEXTSERVICE_DESC),
-							achIconFile,
-							cchIconFile,
-							TEXTSERVICE_ICON_INDEX);
+						TEXTSERVICE_LANGID, 
+						c_guidProfile, 
+						TEXTSERVICE_DESC, 
+						(ULONG)wcslen(TEXTSERVICE_DESC),
+						achIconFile,
+						cchIconFile,
+						TEXTSERVICE_ICON_INDEX);
 ```
 
 ITfInputProcessorProfiles::AddLanguageProfile()配置输入法的基本属性。
@@ -122,14 +122,12 @@ ITfInputProcessorProfiles::AddLanguageProfile()配置输入法的基本属性。
 
 调用ITfInputProcessorProfiles接口将输入法注册为文本服务后，TSF管理器会激活注册为当前语言的所有文本服务。
 
-也就是调用由输入法实现的ITfTextInputProcessor接口
+也就是调用由输入法实现的ITfTextInputProcessor文本输入处理器。
 
 在Activate(ITfThreadMgr *pThreadMgr, TfClientId tfClientId)方法中，主要完成三件任务。
 
-1. 保存线程管理器对象
-2. 保存客户ID
-3. 完成当前线程的输入法初始化设置。
+1. 保存ITfThreadMgr线程管理器对象
+2. 保存ITfClientId客户端标识符对象
+3. 安装输入法的事件接收器
 
-
-
-输入法会在所有接收文本服务的进程中被激活，这是调试输入法的难点之一。在下一节中，介绍调试输入法的另外一个难点：跟踪焦点。
+输入法会在所有接收文本服务的进程中被激活，这是调试输入法的难点之一。在下一节中，将介绍调试输入法的另外一个难点：跟踪焦点。

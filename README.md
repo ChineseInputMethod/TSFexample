@@ -12,8 +12,8 @@
 
 Interface						|Description
 -|-
-[ITfInputProcessorProfiles][1]	|注册TextInputProcessor。（可以视同为注册输入法）
-[ITfTextInputProcessor][2]		|激活文本服务。（可以看成输入法被激活的第一个接口）
+[ITfInputProcessorProfiles][1]	|文本服务语言配置操作。（可以视同为注册输入法）
+[ITfTextInputProcessor][2]		|文本输入处理器，激活文本服务。（可以看成输入法被激活的第一个接口）
 
 ## 2.2 [TrackFocus](https://github.com/ChineseInputMethod/TSFexample/tree/master/2TrackFocus)
 
@@ -21,7 +21,16 @@ Interface						|Description
 
 Interface					|Description
 -|-
-ITfThreadMgr|线程管理器
-ITfSource|
+[ITfThreadMgr][3]			|线程管理器，主要用于安装事件接收器和获取文档管理器。
+[ITfSource][4]				|消息接收器，用于安装事件接收器。（可能是将消息转换为事件，发送给输入法）
+[ITfThreadMgrEventSink][5]	|线程管理器事件接收器，主要捕获焦点事件。
+
+## 2.3 [TrackTextChange](https://github.com/ChineseInputMethod/TSFexample/tree/master/3TrackTextChange)
+
+如何
+
 [1]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfInputProcessorProfiles.md
 [2]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TextService/ITfTextInputProcessor.md
+[3]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfThreadMgr.md
+[4]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfSource.md
+[5]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TextService/ITfThreadMgrEventSink.md
