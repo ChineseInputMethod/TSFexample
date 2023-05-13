@@ -100,8 +100,13 @@ ITfInputProcessorProfiles::AddLanguageProfile()配置输入法的基本属性。
 ## 2.1.6 输入法的启动
 
 此时，想要调试输入法的启动过程，会发现跟踪不到输入法被激活。这是因为当前输入法被注册为了美国英语。
+先注销美国英语版输入法：
 
-将globals.h中的宏TEXTSERVICE_LANGID修改为简体中文
+```
+regsvr32.exe /u 1BasicTextService.dll
+```
+
+然后将globals.h中的宏TEXTSERVICE_LANGID修改为简体中文
 
 ```C++
 //#define TEXTSERVICE_LANGID	MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US)
@@ -112,15 +117,11 @@ ITfInputProcessorProfiles::AddLanguageProfile()配置输入法的基本属性。
 
 ![Activate](img/Activate.png)
 
-就可以跟踪到输入法被激活时的演示效果。
-
-
->**最好在虚拟机中调试输入法，否则很容易将系统搞崩溃。**
-
+重新编译注册简体中文版输入法，就可以跟踪到输入法被激活时的演示效果了。
 
 ## 2.1.7 ITfTextInputProcessor
 
-调用ITfInputProcessorProfiles接口将输入法注册为文本服务后，TSF管理器会激活注册为当前语言的所有文本服务。
+调用ITfInputProcessorProfiles接口将输入法注册为文本服务后，TSF管理器会激活注册为当前语言的文本服务。
 
 也就是调用由输入法实现的ITfTextInputProcessor文本输入处理器。
 
@@ -130,4 +131,4 @@ ITfInputProcessorProfiles::AddLanguageProfile()配置输入法的基本属性。
 2. 保存ITfClientId客户端标识符对象
 3. 安装输入法的事件接收器
 
-输入法会在所有接收文本服务的进程中被激活，这是调试输入法的难点之一。在下一节中，将介绍调试输入法的另外一个难点：跟踪焦点。
+输入法会在所有接收文本服务的活动进程中被激活，这是调试输入法的难点之一。在下一节中，将介绍调试输入法的另外一个难点：跟踪焦点。

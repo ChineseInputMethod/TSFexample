@@ -53,6 +53,9 @@ STDAPI CTextService::OnUninitDocumentMgr(ITfDocumentMgr *pDocMgr)
 
 STDAPI CTextService::OnSetFocus(ITfDocumentMgr *pDocMgrFocus, ITfDocumentMgr *pDocMgrPrevFocus)
 {
+//警告！！！
+//    MessageBox(NULL, "焦点事件", 系统崩溃, MB_OK);
+//在涉及到焦点事件的函数中弹出对话框，会进入死循环，请务必在虚拟机中测试！
     return S_OK;
 }
 
