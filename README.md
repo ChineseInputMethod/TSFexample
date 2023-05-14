@@ -27,10 +27,26 @@ Interface					|Description
 
 ## 2.3 [TrackTextChange](https://github.com/ChineseInputMethod/TSFexample/tree/master/3TrackTextChange)
 
-如何
+如何处理焦点事件以及查看编辑记录
+
+Interface				|Description
+-|-
+[ITfDocumentMgr][6]		|文档管理器
+[ITfContext][7]			|编辑内容对象
+[ITfTextEditSink][8]	|编辑会话完成消息接收器
+[ITfEditRecord][9]		|编辑记录
+[IEnumTfRanges][10]		|片段对象枚举器
+[ITfRange][11]			|片段
+
 
 [1]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfInputProcessorProfiles.md
 [2]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TextService/ITfTextInputProcessor.md
 [3]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfThreadMgr.md
 [4]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfSource.md
 [5]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TextService/ITfThreadMgrEventSink.md
+[6]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfDocumentMgr.md
+[7]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfContext.md
+[8]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TextService/ITfTextEditSink.md
+[9]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfEditRecord.md
+[10]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/IEnumTfRanges.md
+[11]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfRange.md
