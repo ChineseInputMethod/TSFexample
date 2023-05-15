@@ -48,7 +48,17 @@ STDAPI CTextService::OnEndEdit(ITfContext *pContext, TfEditCookie ecReadOnly, IT
             //
             // pRange is the updated range.
             //
-
+            const ULONG cchMax = 256;
+            ULONG pcch = 0;
+            WCHAR pchText[cchMax];
+            pRange->GetText(
+                ecReadOnly,
+                TF_TF_MOVESTART,//TF_TF_IGNOREEND
+                pchText,
+                cchMax,
+                &pcch
+            );
+            pchText[pcch] = '\0';
             pRange->Release();
         }
 
