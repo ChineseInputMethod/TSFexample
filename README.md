@@ -32,9 +32,9 @@ Interface					|Description
 Interface				|Description
 -|-
 [ITfDocumentMgr][6]		|文档管理器，用来创建和管理编辑内容对象。
-[ITfTextEditSink][7]	|编辑会话完成消息接收器
-[ITfEditRecord][8]		|编辑记录
-[IEnumTfRanges][9]		|片段对象枚举器
+[ITfTextEditSink][7]	|编辑会话完成消息接收器，当编辑会话完成时，TSF管理器调用此接口。
+[ITfEditRecord][8]		|编辑记录，用来确定编辑会话期间更改的内容。
+[IEnumTfRanges][9]		|片段对象枚举器，枚举片段对象。
 
 [1]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfInputProcessorProfiles.md
 [2]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TextService/ITfTextInputProcessor.md
