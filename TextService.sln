@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2TrackFocus", "2TrackFocus\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3TrackTextChange", "3TrackTextChange\3TrackTextChange.vcxproj", "{1C6C0967-2F16-48E5-B82F-F57BA2EA4FEB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "4IconInLanguageBar", "4IconInLanguageBar\4IconInLanguageBar.vcxproj", "{DCCE7474-9E89-43BB-8FEF-5813A445EDC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{1C6C0967-2F16-48E5-B82F-F57BA2EA4FEB}.Release|x64.Build.0 = Release|x64
 		{1C6C0967-2F16-48E5-B82F-F57BA2EA4FEB}.Release|x86.ActiveCfg = Release|Win32
 		{1C6C0967-2F16-48E5-B82F-F57BA2EA4FEB}.Release|x86.Build.0 = Release|Win32
+		{DCCE7474-9E89-43BB-8FEF-5813A445EDC3}.Debug|x64.ActiveCfg = Debug|x64
+		{DCCE7474-9E89-43BB-8FEF-5813A445EDC3}.Debug|x64.Build.0 = Debug|x64
+		{DCCE7474-9E89-43BB-8FEF-5813A445EDC3}.Debug|x86.ActiveCfg = Debug|Win32
+		{DCCE7474-9E89-43BB-8FEF-5813A445EDC3}.Debug|x86.Build.0 = Debug|Win32
+		{DCCE7474-9E89-43BB-8FEF-5813A445EDC3}.Release|x64.ActiveCfg = Release|x64
+		{DCCE7474-9E89-43BB-8FEF-5813A445EDC3}.Release|x64.Build.0 = Release|x64
+		{DCCE7474-9E89-43BB-8FEF-5813A445EDC3}.Release|x86.ActiveCfg = Release|Win32
+		{DCCE7474-9E89-43BB-8FEF-5813A445EDC3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

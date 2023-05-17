@@ -108,7 +108,7 @@ if (pEditRecord->GetTextAndPropertyUpdates(TF_GTP_INCL_TEXT, NULL, 0, &pEnumText
 	{
 		//
 		// pRange is the updated range.
-            //
+		//
 
 		pRange->Release();
 	}
