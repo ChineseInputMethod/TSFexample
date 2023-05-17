@@ -36,6 +36,10 @@ Interface				|Description
 [ITfEditRecord][8]		|编辑记录，用来确定编辑会话期间更改的内容。
 [IEnumTfRanges][9]		|片段对象枚举器，枚举片段对象。
 
+## 2.4 [IconInLanguageBar](https://github.com/ChineseInputMethod/TSFexample/tree/master/4IconInLanguageBar)
+
+如何设置输入法语言以及显示语言栏
+
 [1]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfInputProcessorProfiles.md
 [2]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TextService/ITfTextInputProcessor.md
 [3]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfThreadMgr.md

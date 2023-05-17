@@ -57,7 +57,7 @@ if (_pTextEditSinkContext->QueryInterface(IID_ITfSource, (void **)&pSource) == S
 
 在本解决方案所有工程中，当输入焦点发生变化时，都需要重新安装ITfTextEditSink编辑会话完成消息接收器。
 
-首先卸载已安装的编辑会话完成消息接收器。
+首先卸载任何已安装的编辑会话完成消息接收器。
 
 ```C++
 if (_dwTextEditSinkCookie != TF_INVALID_COOKIE)
@@ -85,7 +85,7 @@ if (pDocMgr->GetTop(&_pTextEditSinkContext) != S_OK)
 
 ## 2.3.3 处理编辑会话完成消息
 
-当任何人释放写访问文档锁时，TSF管理器调用ITfTextEditSink编辑会话完成消息接收器。
+当写访问文档锁被释放时，TSF管理器调用ITfTextEditSink编辑会话完成消息接收器。
 输入法属于文本服务，文本服务包括语音输入、键盘输入等所有编辑文本服务。本接口的应用场景是，编辑内容是由其他文本服务修改的情况。
 
 ITfTextEditSink编辑会话完成消息接收器，可以感知编辑会话更改的内容。
@@ -116,6 +116,8 @@ if (pEditRecord->GetTextAndPropertyUpdates(TF_GTP_INCL_TEXT, NULL, 0, &pEnumText
 	pEnumTextChanges->Release();
 }
 ```
+
+ITfContext编辑内容对象和ITfRange片段对象，是输入法的核心接口，在后面小节会继续介绍。
 
 ## 2.3.4 监听用户输入
 
