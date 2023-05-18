@@ -40,6 +40,15 @@ Interface				|Description
 
 如何设置输入法语言以及显示语言栏
 
+Interface				|Description
+-|-
+[ITfLangBarItem][6]		|语言栏项目信息。
+[ITfLangBarItemButton][6]		|语言栏按钮项目信息。
+[ITfLangBarItemSink][6]		|语言栏项目消息接收器。
+[ITfMenu][6]		|语言栏菜单扩展。
+[ITfLangBarItemMgr][6]		|语言栏项目管理器。
+
+
 [1]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfInputProcessorProfiles.md
 [2]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TextService/ITfTextInputProcessor.md
 [3]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfThreadMgr.md
