@@ -35,7 +35,7 @@ void DllRelease();
 
 #define TEXTSERVICE_ICON_INDEX  0
 #define LANGBAR_ITEM_DESC   L"Sample Text Service Button"
-
+#define LANGBAR_ITEM_DESC1   L"文本服务按钮示例"
 //+---------------------------------------------------------------------------
 //
 // SafeStringCopy

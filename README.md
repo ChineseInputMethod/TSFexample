@@ -40,21 +40,22 @@ Interface				|Description
 
 如何设置输入法语言以及显示语言栏
 
-Interface				|Description
+Interface					|Description
 -|-
-[ITfLangBarItem][6]		|语言栏项目信息。
-[ITfLangBarItemButton][6]		|语言栏按钮项目信息。
+[ITfLangBarItemMgr][10]		|语言栏项目管理器，用于管理语言栏中的项目。
+[ITfLangBarItem][6]			|语言栏项目信息。
+[ITfLangBarItemButton][6]	|语言栏按钮项目信息。
+[ITfMenu][6]				|语言栏菜单扩展。
 [ITfLangBarItemSink][6]		|语言栏项目消息接收器。
-[ITfMenu][6]		|语言栏菜单扩展。
-[ITfLangBarItemMgr][6]		|语言栏项目管理器。
 
 
-[1]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfInputProcessorProfiles.md
-[2]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TextService/ITfTextInputProcessor.md
-[3]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfThreadMgr.md
-[4]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfSource.md
-[5]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TextService/ITfThreadMgrEventSink.md
-[6]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfDocumentMgr.md
-[7]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TextService/ITfTextEditSink.md
-[8]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/ITfEditRecord.md
-[9]: https://github.com/ChineseInputMethod/TextServicesFramework/blob/master/Reference/Interfaces/TSFmanager/IEnumTfRanges.md
+[1]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfInputProcessorProfiles.md
+[2]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfTextInputProcessor.md
+[3]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfThreadMgr.md
+[4]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfSource.md
+[5]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfThreadMgrEventSink.md
+[6]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfDocumentMgr.md
+[7]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfTextEditSink.md
+[8]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfEditRecord.md
+[9]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/IEnumTfRanges.md
+[10]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfLangBarItemMgr.md

@@ -73,6 +73,10 @@ private:
     ITfLangBarItemSink *_pLangBarItemSink;
     TF_LANGBARITEMINFO _tfLangBarItemInfo;
     LONG _cRef;
+
+    BSTR _englishString;
+    BSTR _chineseString;
+    BOOL _language;
 };
 
 //+---------------------------------------------------------------------------
@@ -98,6 +102,10 @@ CLangBarItemButton::CLangBarItemButton()
     _pLangBarItemSink = NULL;
 
     _cRef = 1;
+
+    _englishString= SysAllocString(LANGBAR_ITEM_DESC);
+    _chineseString= SysAllocString(LANGBAR_ITEM_DESC1);
+    _language=FALSE;
 }
 
 //+---------------------------------------------------------------------------
@@ -217,11 +225,19 @@ STDAPI CLangBarItemButton::Show(BOOL fShow)
 //
 //----------------------------------------------------------------------------
 
-STDAPI CLangBarItemButton::GetTooltipString(BSTR *pbstrToolTip)
+STDAPI CLangBarItemButton::GetTooltipString(BSTR* pbstrToolTip)
 {
-    *pbstrToolTip = SysAllocString(LANGBAR_ITEM_DESC);
+	if (_language)
+	{
+		*pbstrToolTip = _chineseString;
+	}
+	else
+	{
+		*pbstrToolTip = _englishString;
+	}
+	//    *pbstrToolTip = SysAllocString(LANGBAR_ITEM_DESC1);
 
-    return (*pbstrToolTip == NULL) ? E_OUTOFMEMORY : S_OK;
+	return (*pbstrToolTip == NULL) ? E_OUTOFMEMORY : S_OK;
 }
 
 //+---------------------------------------------------------------------------
@@ -282,9 +298,12 @@ STDAPI CLangBarItemButton::OnMenuSelect(UINT wID)
     switch (wID)
     {
         case MENUITEM_INDEX_0:
+            _language = !_language;
             break;
 
         case MENUITEM_INDEX_1:
+            _language = !_language;
+            _pLangBarItemSink->OnUpdate(TF_LBI_TOOLTIP);
             break;
     }
 
