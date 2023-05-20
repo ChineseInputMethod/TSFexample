@@ -60,11 +60,11 @@ FSF框架由TSF管理器和应用程序，以及文本服务组成。文本服�
 因为输入法是进程内组件，所以要分别注册64位和32位版本。
 64位版的COM组件，注册到注册表的以下键中；
 
->HKEY_CLASSES_ROOT\CLSID\{CLSID}
+>HKEY_CLASSES_ROOT\CLSID\\{CLSID}
 
 32位版的要注册到以下键中，使用regsvr32.exe注册，regsvr32.exe会自动完成。
 
->HKEY_CLASSES_ROOT\WOW6432Node\CLSID\{CLSID}
+>HKEY_CLASSES_ROOT\WOW6432Node\CLSID\\{CLSID}
 
 ## 2.1.5 注册Text Input Processor
 
@@ -131,4 +131,4 @@ regsvr32.exe /u 1BasicTextService.dll
 2. 保存ITfClientId客户端标识符对象
 3. 安装输入法的事件接收器
 
-输入法会在所有接收文本服务的活动进程中被激活，这是调试输入法的难点之一。在下一节中，将介绍调试输入法的另外一个难点：跟踪焦点。
+输入法会在所有需要文本服务的活动进程中被激活，这是调试输入法的难点之一。在下一节中，将介绍调试输入法的另外一个难点：跟踪焦点。

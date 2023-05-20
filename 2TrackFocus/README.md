@@ -16,8 +16,6 @@ ThreadMgrEventSink线程管理器事件接收器的实现在ThreadMgrEventSink.c
 
 而且，同一个DLL文件或EXE文件，可以只包含一个组件。一个组件也可以只包含一个接口。一个接口也可以只有一个成员函数。
 
-例如，微软拼音就在一个DLL文件中包含了多个组件，每个组件对应不同版本的输入法。
-
 TSF输入法的接口类似于IME输入法的导出函数。输入法需要实现的内容，都是通过接口提供给TSF管理器的。
 但是TSF输入法因为是COM组件的原因，系统并不知道TSF输入法所实现的接口，甚至并不知道这个COM组件是个输入法。
 
@@ -73,19 +71,18 @@ Exit:
     return fRet;
 }
 ```
-输入法调用ITfThreadMgr::QueryInterface()方法，得到ITfSource消息接收器。
+输入法调用ITfThreadMgr::QueryInterface()方法，得到ITfSource事件安装器。
 
-然后调用pSource->AdviseSink(IID_ITfThreadMgrEventSink, (ITfThreadMgrEventSink *)this, &_dwThreadMgrEventSinkCookie)方法，将ITfThreadMgrEventSink线程管理事件接收器，安装到消息接收器中。
+然后调用pSource->AdviseSink(IID_ITfThreadMgrEventSink, (ITfThreadMgrEventSink *)this, &_dwThreadMgrEventSinkCookie)方法，将ITfThreadMgrEventSink线程管理事件接收器，安装到事件安装器中。
 
 TSF管理器会保存输入法传递的参数(ITfThreadMgrEventSink *)this，并调用输入法的QueryInterface()方法，查询输入法安装的事件接收器接口。
-（看似这个回调过程，是冗余的，但好像这是安装事件接收器的标准过程。还没学到COM的这部分）
 
-根据查询结果，当发生相应事件，TSF管理器就可以将输入法安装的事件，调用输入法的相应接口了。
+根据查询结果，当发生相应事件，TSF管理器就可以根据输入法安装的事件，调用输入法的相应接口了。
 
 安装ITfThreadMgrEventSink接口的最主要目的就是跟踪焦点事件。
 
-在下一节中将介绍安装ITfTextEditSink编辑会话完成消息接收器。
-本文的消息接收器和事件接收器，大体沿用了Windows对消息和事件的定义，就是接收由系统触发的消息和接收由用户触发的事件。
+>在下一节中将介绍安装ITfTextEditSink编辑会话完成消息接收器。
+>本文的消息接收器和事件接收器，大体沿用了Windows对消息和事件的定义，就是接收由系统触发的消息和接收由用户触发的事件。
 
 ## 2.2.4 调试输入法
 
@@ -110,6 +107,4 @@ TSF管理器会保存输入法传递的参数(ITfThreadMgrEventSink *)this，并
 例如，在win7中就不需要先注销美国英语版本，而是可以直接注册简体中文版本。
 而在win11中，当前工程没有前面介绍的演示效果。
 
-如果想远程调试虚拟机中输入法，可以参考
-[远程调试输入法](https://blog.csdn.net/z736248591/article/details/107788089)。
-一般在虚拟机中本地调试就可以了。
+>如果想远程调试虚拟机中输入法，可以参考[远程调试输入法](https://blog.csdn.net/z736248591/article/details/107788089)。

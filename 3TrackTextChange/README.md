@@ -27,14 +27,14 @@ if ((_pThreadMgr->GetFocus(&pDocMgrFocus) == S_OK) &&
 }
 ```
 
-然后得到编辑内容对象堆栈顶部的编辑内容对象。
+然后得到上下文堆栈顶部的上下文。
 
 ```C++
 if (pDocMgr->GetTop(&_pTextEditSinkContext) != S_OK)
 	return FALSE;
 ```
 
-在编辑内容对象中安装编辑会话完成消息接收器。
+在上下文中安装编辑会话完成消息接收器。
 
 ```C++
 if (_pTextEditSinkContext->QueryInterface(IID_ITfSource, (void **)&pSource) == S_OK)
@@ -51,7 +51,7 @@ if (_pTextEditSinkContext->QueryInterface(IID_ITfSource, (void **)&pSource) == S
 }
 ```
 
-现在，每当编辑内容对象发生变化，TSF管理器都会调用ITfTextEditSink编辑会话完成消息接收器。
+现在，每当上下文发生变化，TSF管理器都会调用ITfTextEditSink编辑会话完成消息接收器。
 
 ## 2.3.2 处理输入焦点事件
 
@@ -74,14 +74,14 @@ if (_dwTextEditSinkCookie != TF_INVALID_COOKIE)
 }
 ```
 
-然后重新获取编辑内容对象。
+然后重新获取上下文。
 
 ```C++
 if (pDocMgr->GetTop(&_pTextEditSinkContext) != S_OK)
 	return FALSE;
 ```
 
-最后将ITfTextEditSink编辑会话完成消息接收器，安装到新的编辑内容对象中。
+最后将ITfTextEditSink编辑会话完成消息接收器，安装到新的上下文中。
 
 ## 2.3.3 处理编辑会话完成消息
 
@@ -99,7 +99,7 @@ if (pEditRecord->GetSelectionStatus(&fSelectionChanged) == S_OK &&
 }
 ```
 
-GetTextAndPropertyUpdates返回一个指向IEnumTfRanges片段对象枚举器的指针，指向一个ITfRange片段对象的集合。
+GetTextAndPropertyUpdates返回一个指向IEnumTfRanges范围枚举器的指针，指向一个ITfRange范围对象的集合。
 
 ```C++
 if (pEditRecord->GetTextAndPropertyUpdates(TF_GTP_INCL_TEXT, NULL, 0, &pEnumTextChanges) == S_OK)
@@ -117,7 +117,7 @@ if (pEditRecord->GetTextAndPropertyUpdates(TF_GTP_INCL_TEXT, NULL, 0, &pEnumText
 }
 ```
 
-ITfContext编辑内容对象和ITfRange片段对象，是输入法的核心接口，在后面小节会继续介绍。
+>ITfContext上下文和ITfRange范围，是输入法的核心接口，在后面小节会继续介绍。
 
 ## 2.3.4 监听用户输入
 

@@ -22,7 +22,7 @@ Interface						|Description
 Interface					|Description
 -|-
 [ITfThreadMgr][3]			|线程管理器，主要用于安装事件接收器和获取文档管理器。
-[ITfSource][4]				|消息接收器，用于安装事件接收器。
+[ITfSource][4]				|事件安装器，用于安装事件接收器。
 [ITfThreadMgrEventSink][5]	|线程管理器事件接收器，主要捕获焦点事件。
 
 ## 2.3 [TrackTextChange](https://github.com/ChineseInputMethod/TSFexample/tree/master/3TrackTextChange)
@@ -31,10 +31,10 @@ Interface					|Description
 
 Interface				|Description
 -|-
-[ITfDocumentMgr][6]		|文档管理器，用来创建和管理编辑内容对象。
+[ITfDocumentMgr][6]		|文档管理器，主要用来创建和管理上下文。
 [ITfTextEditSink][7]	|编辑会话完成消息接收器，当编辑会话完成时，TSF管理器调用此接口。
 [ITfEditRecord][8]		|编辑记录，用来确定编辑会话期间更改的内容。
-[IEnumTfRanges][9]		|片段对象枚举器，枚举片段对象。
+[IEnumTfRanges][9]		|范围枚举器，枚举范围对象。
 
 ## 2.4 [IconInLanguageBar](https://github.com/ChineseInputMethod/TSFexample/tree/master/4IconInLanguageBar)
 
@@ -42,11 +42,11 @@ Interface				|Description
 
 Interface					|Description
 -|-
-[ITfLangBarItemMgr][10]		|语言栏项目管理器，用于管理语言栏中的项目。
-[ITfLangBarItem][6]			|语言栏项目信息。
-[ITfLangBarItemButton][6]	|语言栏按钮项目信息。
-[ITfMenu][6]				|语言栏菜单扩展。
-[ITfLangBarItemSink][6]		|语言栏项目消息接收器。
+[ITfLangBarItemMgr][10]		|语言栏项管理器，用于管理语言栏中的项。
+[ITfLangBarItem][11]		|语言栏项信息，由语言栏管理器用来获取有关语言栏项的详细信息。
+[ITfLangBarItemButton][12]	|语言栏按钮项信息，由语言栏管理器用来获取有关语言栏上的按钮项的信息。
+[ITfMenu][13]				|语言栏菜单扩展，用于为语言栏按钮添加菜单项。
+[ITfLangBarItemSink][14]	|语言栏项消息接收器，用于将语言栏项中的更改通知语言栏。
 
 
 [1]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfInputProcessorProfiles.md
@@ -58,4 +58,8 @@ Interface					|Description
 [7]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfTextEditSink.md
 [8]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfEditRecord.md
 [9]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/IEnumTfRanges.md
-[10]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfLangBarItemMgr.md
+[10]: https://github.com/ChineseInputMethod/Interface/blob/master/LanguageBar/ITfLangBarItemMgr.md
+[11]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfLangBarItem.md
+[12]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfLangBarItemButton.md
+[13]: https://github.com/ChineseInputMethod/Interface/blob/master/LanguageBar/ITfMenu.md
+[14]: https://github.com/ChineseInputMethod/Interface/blob/master/LanguageBar/ITfLangBarItemSink.md
