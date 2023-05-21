@@ -44,7 +44,7 @@ Interface					|Description
 -|-
 [ITfLangBarItemMgr][10]		|语言栏项管理器，用于管理语言栏中的项。
 [ITfLangBarItem][11]		|语言栏项信息，由语言栏管理器用来获取有关语言栏项的详细信息。
-[ITfLangBarItemButton][12]	|语言栏按钮项信息，由语言栏管理器用来获取有关语言栏上的按钮项的信息。
+[ITfLangBarItemButton][12]	|语言栏按钮项信息，由语言栏管理器用来获取有关语言栏上的按钮项信息。
 [ITfMenu][13]				|语言栏菜单扩展，用于为语言栏按钮添加菜单项。
 [ITfLangBarItemSink][14]	|语言栏项消息接收器，用于将语言栏项中的更改通知语言栏。
 

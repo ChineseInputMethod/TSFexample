@@ -31,8 +31,8 @@
 //
 // The descriptions of the menu item of the language bar button.
 //
-static WCHAR c_szMenuItemDescription0[] = L"Menu Item Description 0";
-static WCHAR c_szMenuItemDescription1[] = L"Menu Item Description 1";
+static WCHAR c_szMenuItemDescription0[] = L"更新不通知语言栏";
+static WCHAR c_szMenuItemDescription1[] = L"更新并通知语言栏";
 
 //+---------------------------------------------------------------------------
 //
