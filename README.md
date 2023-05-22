@@ -48,6 +48,17 @@ Interface					|Description
 [ITfMenu][13]				|语言栏菜单扩展，用于为语言栏按钮添加菜单项。
 [ITfLangBarItemSink][14]	|语言栏项消息接收器，用于将语言栏项中的更改通知语言栏。
 
+## 2.5 [TextInsertion](https://github.com/ChineseInputMethod/TSFexample/tree/master/5TextInsertion)
+
+如何请求编辑会话以及使用客户端标识符
+
+Interface					|Description
+-|-
+[ITfContext][15]			|上下文
+[ITfEditSession][16]		|编辑会话
+[ITfInsertAtSelection][17]	|在选定位置插入内容
+[ITfRange][18]				|范围
+
 
 [1]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfInputProcessorProfiles.md
 [2]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfTextInputProcessor.md
@@ -63,3 +74,7 @@ Interface					|Description
 [12]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfLangBarItemButton.md
 [13]: https://github.com/ChineseInputMethod/Interface/blob/master/LanguageBar/ITfMenu.md
 [14]: https://github.com/ChineseInputMethod/Interface/blob/master/LanguageBar/ITfLangBarItemSink.md
+[15]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfContext.md
+[16]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfEditSession.md
+[17]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfInsertAtSelection.md
+[18]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfRange.md

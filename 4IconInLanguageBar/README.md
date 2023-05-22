@@ -62,12 +62,12 @@ if (pLangBarItemMgr->AddItem(_pLangBarItem) != S_OK)
 
 ```C++
 pMenu->AddMenuItem(MENUITEM_INDEX_0,
-			0, 
-			NULL, 
-			NULL, 
-			c_szMenuItemDescription0, 
-			(ULONG)wcslen(c_szMenuItemDescription0), 
-			NULL);
+		0, 
+		NULL, 
+		NULL, 
+		c_szMenuItemDescription0, 
+		(ULONG)wcslen(c_szMenuItemDescription0), 
+		NULL);
 ```
 
 ## 2.4.4 将语言栏项中的更改通知语言栏

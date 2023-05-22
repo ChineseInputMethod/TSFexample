@@ -127,8 +127,8 @@ regsvr32.exe /u 1BasicTextService.dll
 
 在Activate(ITfThreadMgr *pThreadMgr, TfClientId tfClientId)方法中，主要完成三件任务。
 
-1. 保存ITfThreadMgr线程管理器对象
-2. 保存ITfClientId客户端标识符对象
+1. 保存ITfThreadMgr线程管理器
+2. 保存ITfClientId客户端标识符
 3. 安装输入法的事件接收器
 
 输入法会在所有需要文本服务的活动进程中被激活，这是调试输入法的难点之一。在下一节中，将介绍调试输入法的另外一个难点：跟踪焦点。
