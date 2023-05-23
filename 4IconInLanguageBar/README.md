@@ -57,7 +57,7 @@ if (pLangBarItemMgr->AddItem(_pLangBarItem) != S_OK)
 }
 ```
 
-当点击语言栏按钮时，语言栏调用CLangBarItemButton语言栏按钮组件的InitMenu(ITfMenu *pMenu)函数。
+当点击语言栏按钮时，语言栏调用CLangBarItemButton语言栏按钮组件的InitMenu(ITfMenu *pMenu)方法。
 语言栏按钮组件调用ITfMenu语言栏菜单扩展，为语言栏按钮添加菜单项。
 
 ```C++
@@ -73,11 +73,11 @@ pMenu->AddMenuItem(MENUITEM_INDEX_0,
 ## 2.4.4 将语言栏项中的更改通知语言栏
 
 在语言栏按钮组件的装载过程中，语言栏调用了语言栏按钮组件的ITfSource事件安装器，将ITfLangBarItemSink语言栏项消息接收器，安装到了语言栏按钮组件中。
-当语言栏按钮组件更改了语言栏项中时，调用ITfLangBarItemSink语言栏项消息接收器，将更改通知语言栏。
+当语言栏按钮组件更改了语言栏中的项时，调用ITfLangBarItemSink语言栏项消息接收器，将更改通知语言栏。
 
 当点击第一个菜单项时，语言栏按钮组件更改了按钮的提示信息，不通知语言栏该项更改。
 
-当点击第二个菜单项时，语言栏按钮组件更改了按钮的提示信息，通知语言栏该项更改。
+当点击第二个菜单项时，语言栏按钮组件更改了按钮的提示信息后，通知语言栏该项更改。
 
 演示效果如下图所示：
 

@@ -40,7 +40,7 @@ TSF管理器会调用DllGetClassObject导出函数。然后通过类厂对象，
 
 然后调用ITfTextInputProcessor::Activate(ITfThreadMgr *pThreadMgr, TfClientId tfClientId)方法。
 
-输入法保存ITfThreadMgr线程管理器和TfClientId客户端标识符对象，开始初始化输入法。
+输入法保存ITfThreadMgr线程管理器和TfClientId客户端标识符，开始初始化输入法。
 
 ## 2.2.3 安装事件接收器
 

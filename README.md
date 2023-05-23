@@ -34,7 +34,7 @@ Interface				|Description
 [ITfDocumentMgr][6]		|文档管理器，主要用来创建和管理上下文。
 [ITfTextEditSink][7]	|编辑会话完成消息接收器，当编辑会话完成时，TSF管理器调用此接口。
 [ITfEditRecord][8]		|编辑记录，用来确定编辑会话期间更改的内容。
-[IEnumTfRanges][9]		|范围枚举器，枚举范围对象。
+[IEnumTfRanges][9]		|文本范围枚举器，枚举文本范围对象。
 
 ## 2.4 [IconInLanguageBar](https://github.com/ChineseInputMethod/TSFexample/tree/master/4IconInLanguageBar)
 
@@ -43,21 +43,21 @@ Interface				|Description
 Interface					|Description
 -|-
 [ITfLangBarItemMgr][10]		|语言栏项管理器，用于管理语言栏中的项。
-[ITfLangBarItem][11]		|语言栏项信息，由语言栏管理器用来获取有关语言栏项的详细信息。
-[ITfLangBarItemButton][12]	|语言栏按钮项信息，由语言栏管理器用来获取有关语言栏上的按钮项信息。
+[ITfLangBarItem][11]		|语言栏项信息，由语言栏管理器用来获取语言栏项的详细信息。
+[ITfLangBarItemButton][12]	|语言栏按钮项信息，由语言栏管理器用来获取语言栏上的按钮项信息。
 [ITfMenu][13]				|语言栏菜单扩展，用于为语言栏按钮添加菜单项。
 [ITfLangBarItemSink][14]	|语言栏项消息接收器，用于将语言栏项中的更改通知语言栏。
 
 ## 2.5 [TextInsertion](https://github.com/ChineseInputMethod/TSFexample/tree/master/5TextInsertion)
 
-如何请求编辑会话以及使用客户端标识符
+请求编辑会话以及使用客户端标识符
 
 Interface					|Description
 -|-
-[ITfContext][15]			|上下文
-[ITfEditSession][16]		|编辑会话
-[ITfInsertAtSelection][17]	|在选定位置插入内容
-[ITfRange][18]				|范围
+[ITfContext][15]			|上下文，用来创建和管理编辑上下文。
+[ITfEditSession][16]		|编辑会话，由TSF管理器调用，用来修改上下文的文本和属性。
+[ITfInsertAtSelection][17]	|在选定位置插入内容，用于在上下文中插入文本或嵌入对象。
+[ITfRange][18]				|文本范围，用来引用和操作给定上下文中的文本。
 
 
 [1]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfInputProcessorProfiles.md

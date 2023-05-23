@@ -99,7 +99,7 @@ if (pEditRecord->GetSelectionStatus(&fSelectionChanged) == S_OK &&
 }
 ```
 
-GetTextAndPropertyUpdates返回一个指向IEnumTfRanges范围枚举器的指针，指向一个ITfRange范围对象的集合。
+GetTextAndPropertyUpdates返回一个指向IEnumTfRanges文本范围枚举器的指针，指向一个ITfRange文本范围对象的集合。
 
 ```C++
 if (pEditRecord->GetTextAndPropertyUpdates(TF_GTP_INCL_TEXT, NULL, 0, &pEnumTextChanges) == S_OK)
@@ -117,7 +117,7 @@ if (pEditRecord->GetTextAndPropertyUpdates(TF_GTP_INCL_TEXT, NULL, 0, &pEnumText
 }
 ```
 
->ITfContext上下文和ITfRange范围，是输入法的核心接口，在后面小节会继续介绍。
+>ITfContext上下文和ITfRange文本范围，是输入法的核心接口，在后面小节会继续介绍。
 
 ## 2.3.4 监听用户输入
 
