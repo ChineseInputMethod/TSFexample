@@ -59,6 +59,15 @@ Interface					|Description
 [ITfInsertAtSelection][17]	|在选定位置插入内容，用于在上下文中插入文本或嵌入对象。
 [ITfRange][18]				|文本范围，用来引用和操作给定上下文中的文本。
 
+## 2.6 [Keyboard](https://github.com/ChineseInputMethod/TSFexample/tree/master/6Keyboard)
+
+注册输入法类别以及安装键盘事件接收器
+
+Interface					|Description
+-|-
+[ITfCategoryMgr][19]			|类别管理器，为输入法注册类别。
+[ITfCompartmentMgr][19]			|公共缓冲池管理器。
+[ITfCompartment][19]			|类公共缓冲池对象。
 
 [1]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfInputProcessorProfiles.md
 [2]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfTextInputProcessor.md
@@ -78,3 +87,4 @@ Interface					|Description
 [16]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfEditSession.md
 [17]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfInsertAtSelection.md
 [18]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfRange.md
+[19]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfCategoryMgr.md

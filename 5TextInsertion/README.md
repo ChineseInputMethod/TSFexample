@@ -4,7 +4,7 @@
 - LanguageBar.cpp
 - InsertHello.cpp
 
-编辑会话组件在中InsertHello.cpp。
+编辑会话组件在InsertHello.cpp文件中。
 本节介绍如何请求编辑会话，插入字符。
 
 ## 2.5.1 请求编辑会话
@@ -79,7 +79,7 @@ if (pInsertAtSelection->InsertTextAtSelection(ec, 0, pchText, cchText, &pRange) 
 	goto Exit;
 ```
 
-至此，就完成了字符的输入（还有一些后续工作）。
+这样，就完成了字符的输入。
 
 但实际上输入法并不按照这种方式输入汉字，而是使用ITfRange::SetText()方法输入汉字。
 ITfInsertAtSelection接口一般用来插入一个空字符。
