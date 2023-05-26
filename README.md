@@ -66,8 +66,10 @@ Interface					|Description
 Interface					|Description
 -|-
 [ITfCategoryMgr][19]			|类别管理器，为输入法注册类别。
-[ITfCompartmentMgr][19]			|公共缓冲池管理器。
-[ITfCompartment][19]			|类公共缓冲池对象。
+[ITfKeystrokeMgr][20]			|按键管理器。
+[ITfKeyEventSink][21]			|键盘事件接收器。
+[ITfCompartmentMgr][22]			|公共缓冲池管理器。
+[ITfCompartment][23]			|类公共缓冲池对象。
 
 [1]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfInputProcessorProfiles.md
 [2]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfTextInputProcessor.md
@@ -88,3 +90,7 @@ Interface					|Description
 [17]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfInsertAtSelection.md
 [18]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfRange.md
 [19]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfCategoryMgr.md
+[20]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfKeystrokeMgr.md
+[21]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfKeyEventSink.md
+[22]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfCompartmentMgr.md
+[23]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfCompartment.md

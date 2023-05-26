@@ -72,7 +72,7 @@ if (pContext->QueryInterface(IID_ITfInsertAtSelection, (void **)&pInsertAtSelect
 	return;
 ```
 
-然后，将字符写入文本范围。
+然后，将字符写入ITfRange文本范围。
 
 ```C++
 if (pInsertAtSelection->InsertTextAtSelection(ec, 0, pchText, cchText, &pRange) != S_OK)
