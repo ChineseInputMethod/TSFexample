@@ -69,7 +69,7 @@ Interface					|Description
 [ITfKeystrokeMgr][20]			|按键管理器。
 [ITfKeyEventSink][21]			|键盘事件接收器。
 [ITfCompartmentMgr][22]			|公共缓冲池管理器。
-[ITfCompartment][23]			|类公共缓冲池对象。
+[ITfCompartment][23]			|公共缓冲池对象。
 
 [1]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfInputProcessorProfiles.md
 [2]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfTextInputProcessor.md
