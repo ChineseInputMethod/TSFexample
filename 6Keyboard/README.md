@@ -85,4 +85,69 @@ CTextService::OnTestKeyUp(ITfContext *, unsigned __int64, __int64, int *) 0
 
 >只有在OnTestKeyDown、OnTestKeyUp函数返回true时，TSF管理器才会继续调用OnKeyDown、OnKeyUp函数。
 
-## 2.6.3 安装系统保留键
+## 2.6.3 注册系统保留键
+
+系统保留键就是快捷键，是在系统一级为应用程序保留的快捷键。在输入法中，就是中英文切换，全角半角切换这样的开关。
+
+在输入法激活的时候，获取按键管理器，调用ITfKeystrokeMgr::PreserveKey()方法，注册系统保留键。
+
+```C++
+BOOL CTextService::_InitPreservedKey()
+{
+    ITfKeystrokeMgr *pKeystrokeMgr;
+    HRESULT hr;
+
+    if (_pThreadMgr->QueryInterface(IID_ITfKeystrokeMgr, (void **)&pKeystrokeMgr) != S_OK)
+        return FALSE;
+
+    // register Alt+~ key
+    hr = pKeystrokeMgr->PreserveKey(_tfClientId, 
+                                    GUID_PRESERVEDKEY_ONOFF,
+                                    &c_pkeyOnOff0,
+                                    c_szPKeyOnOff,
+                                    wcslen(c_szPKeyOnOff));
+
+    // register KANJI key
+    hr = pKeystrokeMgr->PreserveKey(_tfClientId, 
+                                    GUID_PRESERVEDKEY_ONOFF,
+                                    &c_pkeyOnOff1,
+                                    c_szPKeyOnOff,
+                                    wcslen(c_szPKeyOnOff));
+
+    // register F6 key
+    hr = pKeystrokeMgr->PreserveKey(_tfClientId, 
+                                    GUID_PRESERVEDKEY_F6,
+                                    &c_pkeyF6,
+                                    c_szPKeyF6,
+                                    wcslen(c_szPKeyF6));
+
+    pKeystrokeMgr->Release();
+
+    return (hr == S_OK);
+}
+```
+
+之后，当用户按下与已注册的保留键时，TSF管理器调用ITfKeyEventSink::OnPreservedKey()方法。
+
+```C++
+STDAPI CTextService::OnPreservedKey(ITfContext *pContext, REFGUID rguid, BOOL *pfEaten)
+{
+
+    if (IsEqualGUID(rguid, GUID_PRESERVEDKEY_ONOFF))
+    {
+        BOOL fOpen = _IsKeyboardOpen();
+        _SetKeyboardOpen(fOpen ? FALSE : TRUE);
+        *pfEaten = TRUE;
+    }
+    else
+    {
+        *pfEaten = FALSE;
+    }
+
+    return S_OK;
+}
+```
+
+>当前工程是日本语输入法，按Alt+~键，切换英文和日文输入状态。
+
+2.6.4 使用公共缓冲池保存键盘状态
