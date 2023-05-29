@@ -4,8 +4,7 @@
   - Register.cpp
 - TextService.cpp
   - KeyEventSink.cpp
-- LanguageBar.cpp
-  - Compartment.cpp
+   - Compartment.cpp
 
 在Register.cpp文件中，添加了ITfCategoryMgr类别管理器的使用方法。<br/>
 在KeyEventSink.cpp文件中，演示了ITfKeystrokeMgr按键管理器的调用方法。<br/>
@@ -149,5 +148,138 @@ STDAPI CTextService::OnPreservedKey(ITfContext *pContext, REFGUID rguid, BOOL *p
 ```
 
 >当前工程是日本语输入法，按Alt+~键，切换英文和日文输入状态。
+>KANJI key是日本语键盘中的按键。
 
 2.6.4 使用公共缓冲池保存键盘状态
+
+如果输入法被停用后，再次激活时，希望恢复停用前的一些设置。这就需要将设置保存在ITfCompartment公共缓冲池中。
+
+可以在四个级别ITfCompartment公共缓冲池：全局、线程管理器、文档管理器和上下文。
+
+本节演示了通过读取上下文中的ITfCompartment公共缓冲池信息，得到键盘状态是否有效。
+
+```C++
+BOOL CTextService::_IsKeyboardDisabled()
+{
+    ITfCompartmentMgr *pCompMgr = NULL;
+    ITfDocumentMgr *pDocMgrFocus = NULL;
+    ITfContext *pContext = NULL;
+    BOOL fDisabled = FALSE;
+
+    if ((_pThreadMgr->GetFocus(&pDocMgrFocus) != S_OK) ||
+        (pDocMgrFocus == NULL))
+    {
+        // if there is no focus document manager object, the keyboard 
+        // is disabled.
+        fDisabled = TRUE;
+        goto Exit;
+    }
+
+    if ((pDocMgrFocus->GetTop(&pContext) != S_OK) ||
+        (pContext == NULL))
+    {
+        // if there is no context object, the keyboard is disabled.
+        fDisabled = TRUE;
+        goto Exit;
+    }
+
+    if (pContext->QueryInterface(IID_ITfCompartmentMgr, (void **)&pCompMgr) == S_OK)
+    {
+        ITfCompartment *pCompartmentDisabled;
+        ITfCompartment *pCompartmentEmptyContext;
+
+        // Check GUID_COMPARTMENT_KEYBOARD_DISABLED.
+        if (pCompMgr->GetCompartment(GUID_COMPARTMENT_KEYBOARD_DISABLED, &pCompartmentDisabled) == S_OK)
+        {
+            VARIANT var;
+            if (S_OK == pCompartmentDisabled->GetValue(&var))
+            {
+                if (var.vt == VT_I4) // Even VT_EMPTY, GetValue() can succeed
+                {
+                    fDisabled = (BOOL)var.lVal;
+                }
+            }
+            pCompartmentDisabled->Release();
+        }
+
+        // Check GUID_COMPARTMENT_EMPTYCONTEXT.
+        if (pCompMgr->GetCompartment(GUID_COMPARTMENT_EMPTYCONTEXT, &pCompartmentEmptyContext) == S_OK)
+        {
+            VARIANT var;
+            if (S_OK == pCompartmentEmptyContext->GetValue(&var))
+            {
+                if (var.vt == VT_I4) // Even VT_EMPTY, GetValue() can succeed
+                {
+                    fDisabled = (BOOL)var.lVal;
+                }
+            }
+            pCompartmentEmptyContext->Release();
+        }
+
+        pCompMgr->Release();
+    }
+
+Exit:
+    if (pContext)
+        pContext->Release();
+
+    if (pDocMgrFocus)
+        pDocMgrFocus->Release();
+
+    return fDisabled;
+}
+```
+
+通过读写线程管理器中的ITfCompartment公共缓冲池信息，开关键盘状态是否开启。
+
+```C++
+BOOL CTextService::_IsKeyboardOpen()
+{
+    ITfCompartmentMgr *pCompMgr = NULL;
+    BOOL fOpen = FALSE;
+
+    if (_pThreadMgr->QueryInterface(IID_ITfCompartmentMgr, (void **)&pCompMgr) == S_OK)
+    {
+        ITfCompartment *pCompartment;
+        if (pCompMgr->GetCompartment(GUID_COMPARTMENT_KEYBOARD_OPENCLOSE, &pCompartment) == S_OK)
+        {
+            VARIANT var;
+            if (S_OK == pCompartment->GetValue(&var))
+            {
+                if (var.vt == VT_I4) // Even VT_EMPTY, GetValue() can succeed
+                {
+                    fOpen = (BOOL)var.lVal;
+                }
+            }
+        }
+        pCompMgr->Release();
+    }
+
+    return fOpen;
+}
+```
+
+```C++
+HRESULT CTextService::_SetKeyboardOpen(BOOL fOpen)
+{
+    HRESULT hr = E_FAIL;
+    ITfCompartmentMgr *pCompMgr = NULL;
+
+    if (_pThreadMgr->QueryInterface(IID_ITfCompartmentMgr, (void **)&pCompMgr) == S_OK)
+    {
+        ITfCompartment *pCompartment;
+        if (pCompMgr->GetCompartment(GUID_COMPARTMENT_KEYBOARD_OPENCLOSE, &pCompartment) == S_OK)
+        {
+            VARIANT var;
+            var.vt = VT_I4;
+            var.lVal = fOpen;
+            hr = pCompartment->SetValue(_tfClientId, &var);
+        }
+        pCompMgr->Release();
+    }
+
+    return hr;
+}
+```
+
+>点击语言栏菜单项，可以显式看到键盘状态变化。
