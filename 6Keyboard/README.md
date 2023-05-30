@@ -4,7 +4,7 @@
   - Register.cpp
 - TextService.cpp
   - KeyEventSink.cpp
-   - Compartment.cpp
+    - Compartment.cpp
 
 在Register.cpp文件中，添加了ITfCategoryMgr类别管理器的使用方法。<br/>
 在KeyEventSink.cpp文件中，演示了ITfKeystrokeMgr按键管理器的调用方法。<br/>
@@ -14,9 +14,9 @@
 
 ## 2.6.1 注册输入法类别
 
-要被TSF管理器识别为键盘文本服务，输入法的CLSID必须具有GUID_TFCAT_TIP_KEYBOARD类别值。
+要被TSF管理器识别为键盘文本服务，输入法必须具有GUID_TFCAT_TIP_KEYBOARD类别值。
 
-首先调用COM库函数CoCreateInstance，创建类别管理器组件，同时获得类别管理器接口。<br/>
+首先调用COM库函数CoCreateInstance，创建类别管理器组件，获得类别管理器接口。<br/>
 然后调用ITfCategoryMgr::RegisterCategory()方法为输入法添加类别。
 
 ```C++
@@ -40,18 +40,18 @@ BOOL RegisterCategories()
 }
 ```
 
-将输入法注册为键盘文本服务后，注册表添加如下键值：
+将输入法注册为键盘文本服务后，注册表将添加如下键值：
 
 ![Category](img/Category.png)
 
->输入法注册为键盘文本服务后，本解决方案的所有工程，在Windows 11中，也可以正常演示了。
+>输入法注册为键盘文本服务后，当前工程在Windows 11中，也可以正常演示了。
 
 ## 2.6.2 安装键盘事件接收器
 
 将输入法注册为键盘文本服务，只是让系统能够识别输入法，在相应过程中加载输入法。<br/>
 例如，单独出现在语言栏中。
 
-如果想要捕获键盘按键，还要像前面工程介绍的安装事件接收器那样，在激活输入法的时候，安装键盘事件接收器。
+如果想要捕获键盘按键，还要像前面工程介绍的那样，在激活输入法的时候，安装键盘事件接收器。
 
 ```C++
 BOOL CTextService::_InitKeyEventSink()
@@ -150,11 +150,11 @@ STDAPI CTextService::OnPreservedKey(ITfContext *pContext, REFGUID rguid, BOOL *p
 >当前工程是日本语输入法，按Alt+~键，切换英文和日文输入状态。
 >KANJI key是日本语键盘中的按键。
 
-2.6.4 使用公共缓冲池保存键盘状态
+## 2.6.4 使用公共缓冲池保存键盘状态
 
 如果输入法被停用后，再次激活时，希望恢复停用前的一些设置。这就需要将设置保存在ITfCompartment公共缓冲池中。
 
-可以在四个级别ITfCompartment公共缓冲池：全局、线程管理器、文档管理器和上下文。
+可以在四个级别操作ITfCompartment公共缓冲池：全局、线程管理器、文档管理器和上下文。
 
 本节演示了通过读取上下文中的ITfCompartment公共缓冲池信息，得到键盘状态是否有效。
 
@@ -230,7 +230,7 @@ Exit:
 }
 ```
 
-通过读写线程管理器中的ITfCompartment公共缓冲池信息，开关键盘状态是否开启。
+还演示了，通过读写线程管理器中的ITfCompartment公共缓冲池信息，开关键盘状态。
 
 ```C++
 BOOL CTextService::_IsKeyboardOpen()
@@ -283,3 +283,5 @@ HRESULT CTextService::_SetKeyboardOpen(BOOL fOpen)
 ```
 
 >点击语言栏菜单项，可以显式看到键盘状态变化。
+
+关于键盘状态，原文档中[Add Keyboard-Related Compartments](doc/default.asp)部分有详细说明。
