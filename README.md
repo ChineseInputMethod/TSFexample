@@ -15,6 +15,9 @@ Interface						|Description
 [ITfInputProcessorProfiles][1]	|文本服务语言配置操作。（可以视同为注册输入法）
 [ITfTextInputProcessor][2]		|文本输入处理器，激活文本服务。（可以看成输入法被激活的第一个接口）
 
+[1]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfInputProcessorProfiles.md
+[2]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfTextInputProcessor.md
+
 ## 2.2 [TrackFocus](https://github.com/ChineseInputMethod/TSFexample/tree/master/2TrackFocus)
 
 如何安装事件接收器以及调试输入法
@@ -24,6 +27,10 @@ Interface					|Description
 [ITfThreadMgr][3]			|线程管理器，主要用于安装事件接收器和获取文档管理器。
 [ITfSource][4]				|事件安装器，用于安装事件接收器。
 [ITfThreadMgrEventSink][5]	|线程管理器事件接收器，主要捕获焦点事件。
+
+[3]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfThreadMgr.md
+[4]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfSource.md
+[5]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfThreadMgrEventSink.md
 
 ## 2.3 [TrackTextChange](https://github.com/ChineseInputMethod/TSFexample/tree/master/3TrackTextChange)
 
@@ -35,6 +42,11 @@ Interface				|Description
 [ITfTextEditSink][7]	|编辑会话完成消息接收器，当编辑会话完成时，TSF管理器调用此接口。
 [ITfEditRecord][8]		|编辑记录，用来确定编辑会话期间更改的内容。
 [IEnumTfRanges][9]		|文本范围枚举器，枚举文本范围对象。
+
+[6]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfDocumentMgr.md
+[7]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfTextEditSink.md
+[8]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfEditRecord.md
+[9]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/IEnumTfRanges.md
 
 ## 2.4 [IconInLanguageBar](https://github.com/ChineseInputMethod/TSFexample/tree/master/4IconInLanguageBar)
 
@@ -48,6 +60,12 @@ Interface					|Description
 [ITfMenu][13]				|语言栏菜单扩展，用于为语言栏按钮添加菜单项。
 [ITfLangBarItemSink][14]	|语言栏项消息接收器，用于将语言栏项中的更改通知语言栏。
 
+[10]: https://github.com/ChineseInputMethod/Interface/blob/master/LanguageBar/ITfLangBarItemMgr.md
+[11]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfLangBarItem.md
+[12]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfLangBarItemButton.md
+[13]: https://github.com/ChineseInputMethod/Interface/blob/master/LanguageBar/ITfMenu.md
+[14]: https://github.com/ChineseInputMethod/Interface/blob/master/LanguageBar/ITfLangBarItemSink.md
+
 ## 2.5 [TextInsertion](https://github.com/ChineseInputMethod/TSFexample/tree/master/5TextInsertion)
 
 请求编辑会话以及使用客户端标识符
@@ -59,36 +77,23 @@ Interface					|Description
 [ITfInsertAtSelection][17]	|在选定位置插入内容，用于在上下文中插入文本或嵌入对象。
 [ITfRange][18]				|文本范围，用来引用和操作给定上下文中的文本。
 
-## 2.6 [Keyboard](https://github.com/ChineseInputMethod/TSFexample/tree/master/6Keyboard)
-
-注册输入法类别以及安装键盘事件接收器
-
-Interface					|Description
--|-
-[ITfCategoryMgr][19]			|类别管理器，为输入法注册类别。
-[ITfKeystrokeMgr][20]			|按键管理器。
-[ITfKeyEventSink][21]			|键盘事件接收器。
-[ITfCompartmentMgr][22]			|公共缓冲池管理器。
-[ITfCompartment][23]			|公共缓冲池。
-
-[1]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfInputProcessorProfiles.md
-[2]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfTextInputProcessor.md
-[3]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfThreadMgr.md
-[4]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfSource.md
-[5]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfThreadMgrEventSink.md
-[6]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfDocumentMgr.md
-[7]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfTextEditSink.md
-[8]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfEditRecord.md
-[9]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/IEnumTfRanges.md
-[10]: https://github.com/ChineseInputMethod/Interface/blob/master/LanguageBar/ITfLangBarItemMgr.md
-[11]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfLangBarItem.md
-[12]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfLangBarItemButton.md
-[13]: https://github.com/ChineseInputMethod/Interface/blob/master/LanguageBar/ITfMenu.md
-[14]: https://github.com/ChineseInputMethod/Interface/blob/master/LanguageBar/ITfLangBarItemSink.md
 [15]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfContext.md
 [16]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfEditSession.md
 [17]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfInsertAtSelection.md
 [18]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfRange.md
+
+## 2.6 [Keyboard](https://github.com/ChineseInputMethod/TSFexample/tree/master/6Keyboard)
+
+注册输入法类别以及安装键盘事件接收器
+
+Interface				|Description
+-|-
+[ITfCategoryMgr][19]	|类别管理器，为输入法注册类别。
+[ITfKeystrokeMgr][20]	|按键管理器，主要用来安装键盘事件接收器和注册保留键。
+[ITfKeyEventSink][21]	|键盘事件接收器，用于接收按键和保留键事件。
+[ITfCompartmentMgr][22]	|公共缓冲池管理器，用于管理客户端之间的共享数据。
+[ITfCompartment][23]	|公共缓冲池，用于获取和设置公共缓冲池中的数据以及安装ITfCompartmentEventSink公共缓冲池事件接收器。
+
 [19]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfCategoryMgr.md
 [20]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfKeystrokeMgr.md
 [21]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfKeyEventSink.md

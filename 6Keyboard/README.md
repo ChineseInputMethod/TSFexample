@@ -284,4 +284,4 @@ HRESULT CTextService::_SetKeyboardOpen(BOOL fOpen)
 
 >点击语言栏菜单项，可以显式看到键盘状态变化。
 
-关于键盘状态，原文档中[Add Keyboard-Related Compartments](doc/default.asp)部分有详细说明。
+关于键盘状态，原文档中Add Keyboard-Related Compartments部分有详细说明。
