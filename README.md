@@ -99,3 +99,17 @@ Interface				|Description
 [21]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfKeyEventSink.md
 [22]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfCompartmentMgr.md
 [23]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfCompartment.md
+
+## 2.7 [Composition](https://github.com/ChineseInputMethod/TSFexample/tree/master/7Composition)
+
+如何开始输入组合以及处理键盘事件
+
+Interface					|Description
+-|-
+[ITfContextComposition][24]	|上下文输入组合。
+[ITfComposition][25]		|输入组合。
+[ITfCompositionSink][26]	|输入组合终止消息接收器。
+
+[24]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfContextComposition.md
+[25]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfComposition.md
+[26]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfCompositionSink.md
