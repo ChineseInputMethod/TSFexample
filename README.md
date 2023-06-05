@@ -102,7 +102,7 @@ Interface				|Description
 
 ## 2.7 [Composition](https://github.com/ChineseInputMethod/TSFexample/tree/master/7Composition)
 
-如何开始输入组合以及处理键盘事件
+如何创建输入组合以及处理键盘事件
 
 Interface					|Description
 -|-
