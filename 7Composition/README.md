@@ -176,4 +176,73 @@ Exit:
 }
 ```
 
+### 2.7.2.2 输入组合与预上屏
+
+>如果没有相应的背景知识，很难理解为什么会有预上屏和输入组合的概念。<br/>
+电脑处理字母文字是非常简单的，键盘按键对应着相应字母。不同语言的文字，只要改变操作系统的内码页和键盘的驱动就可以了。<br/>
+但是处理起某些东亚文字，这里特指中日韩文字，就非常困难了。因为键盘上没有那么多按键，来对应相应的文字字母。<br/>
+最直接的解决方案是扩大键盘，日本发明了自己的日本语键盘。中文也在这方面探索过，林语堂的明快打字机就是这方面的代表。<br/>
+繁体中文输入法沿袭了这种设计思想，仓颉、大千等输入法的键盘都像日本语键盘一样“大”。<br/>
+
+>相对于大键盘，另一条技术路线叫罗马字。汉语拼音方案可以看成汉语罗马字的继承者。<br/>
+汉语拼音方案违反了语音学的一音一符原则，故意设置了很多错误拼音。这是因为其并不是为了拼音设计的，其设计目的一直是取代汉字。
+但是这种设计思想，恰好非常利于电脑键盘打字。（有很多原因，这里不展开了）
+
+>现在的电脑端，日本也用罗马字输入法打字。将按键组合成一个平假名，这就是ITfComposition输入组合，这个术语的由来。<br/>
+
+```C++
+HRESULT CTextService::_HandleCharacterKey(TfEditCookie ec, ITfContext *pContext, WPARAM wParam)
+{
+    ITfRange *pRangeComposition;
+    TF_SELECTION tfSelection;
+    ULONG cFetched;
+    WCHAR ch;
+    BOOL fCovered;
+//创建输入组合
+    // Start the new compositon if there is no composition.
+    if (!_IsComposing())
+        _StartComposition(pContext);
+
+    //这里将按键直接转换为了字符，输入法要在这里进行编码处理
+    // Assign VK_ value to the char. So the inserted the character is always
+    // uppercase.
+    //
+    ch = (WCHAR)wParam;
+
+    // first, test where a keystroke would go in the document if an insert is done
+    if (pContext->GetSelection(ec, TF_DEFAULT_SELECTION, 1, &tfSelection, &cFetched) != S_OK || cFetched != 1)
+        return S_FALSE;
+
+    // is the insertion point covered by a composition?
+    if (_pComposition->GetRange(&pRangeComposition) == S_OK)
+    {
+        fCovered = IsRangeCovered(ec, tfSelection.range, pRangeComposition);
+
+        pRangeComposition->Release();
+
+        if (!fCovered)
+        {
+            goto Exit;
+        }
+    }
+//将转换后的字符写入文本范围
+    // insert the text
+    // use SetText here instead of InsertTextAtSelection because a composition has already been started
+    // Don't allow to the app to adjust the insertion point inside the composition
+    if (tfSelection.range->SetText(ec, 0, &ch, 1) != S_OK)
+        goto Exit;
+//更新文本范围和文本范围的结束定位点
+    // update the selection, we'll make it an insertion point just past
+    // the inserted text.
+    tfSelection.range->Collapse(ec, TF_ANCHOR_END);
+    pContext->SetSelection(ec, 1, &tfSelection);
+
+Exit:
+    tfSelection.range->Release();
+    return S_OK;
+}
+```
+
+>预上屏<br/>
+
 ## 2.7.3 输入组合的意外终止
