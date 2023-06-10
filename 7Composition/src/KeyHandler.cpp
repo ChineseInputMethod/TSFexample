@@ -107,6 +107,9 @@ HRESULT CTextService::_HandleCharacterKey(TfEditCookie ec, ITfContext *pContext,
     ULONG cFetched;
     WCHAR ch;
     BOOL fCovered;
+    const ULONG cchMax = 256;
+    ULONG pcch = 0;
+    WCHAR pchText[cchMax];
 
     // Start the new compositon if there is no composition.
     if (!_IsComposing())
@@ -126,7 +129,14 @@ HRESULT CTextService::_HandleCharacterKey(TfEditCookie ec, ITfContext *pContext,
     if (_pComposition->GetRange(&pRangeComposition) == S_OK)
     {
         fCovered = IsRangeCovered(ec, tfSelection.range, pRangeComposition);
-
+        pRangeComposition->GetText(
+            ec,
+            TF_TF_MOVESTART,//TF_TF_IGNOREEND
+            pchText,
+            cchMax,
+            &pcch
+        );
+        pchText[pcch] = '\0';
         pRangeComposition->Release();
 
         if (!fCovered)
@@ -140,7 +150,14 @@ HRESULT CTextService::_HandleCharacterKey(TfEditCookie ec, ITfContext *pContext,
     // Don't allow to the app to adjust the insertion point inside the composition
     if (tfSelection.range->SetText(ec, 0, &ch, 1) != S_OK)
         goto Exit;
-
+    tfSelection.range->GetText(
+        ec,
+        TF_TF_MOVESTART,//TF_TF_IGNOREEND
+        pchText,
+        cchMax,
+        &pcch
+    );
+    pchText[pcch] = '\0';
     // update the selection, we'll make it an insertion point just past
     // the inserted text.
     tfSelection.range->Collapse(ec, TF_ANCHOR_END);
