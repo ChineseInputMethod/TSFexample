@@ -265,6 +265,22 @@ ITfComposition输入组合和ITfRange文本范围，是TSF编程中，最难以�
 
 ### 2.7.2.3 输入组合的正常终止
 
+当用户按下回车键后，ITfComposition输入组合终止，正常完成一次汉字的输入。
+
+```C++
+void CTextService::_TerminateComposition(TfEditCookie ec)
+{
+    if (_pComposition != NULL)
+    {
+        _pComposition->EndComposition(ec);
+        _pComposition->Release();
+        _pComposition = NULL;
+    }
+}
+```
+
 ### 2.7.2.4 输入组合的非正常终止
 
 ## 2.7.3 输入组合的意外终止
+
+![wordpad](img/wordpad.png)
