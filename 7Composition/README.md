@@ -281,6 +281,46 @@ void CTextService::_TerminateComposition(TfEditCookie ec)
 
 ### 2.7.2.4 输入组合的非正常终止
 
+在ITfTextEditSink编辑会话完成消息接收器中判断，当插入点不在文本范围内时，触发ITfComposition输入组合非正常终止。
+
+```C++
+    if (pEditRecord->GetSelectionStatus(&fSelectionChanged) == S_OK &&
+        fSelectionChanged)
+    {
+        // If the selection is moved to out side of the current composition,
+        // terminate the composition. This TextService supports only one
+        // composition in one context object.
+        if (_IsComposing())
+        {
+            TF_SELECTION tfSelection;
+            ULONG cFetched;
+
+            if (pContext->GetSelection(ecReadOnly, TF_DEFAULT_SELECTION, 1, &tfSelection, &cFetched) == S_OK && cFetched == 1)
+            {
+                ITfRange *pRangeComposition;
+                // is the insertion point covered by a composition?
+                if (_pComposition->GetRange(&pRangeComposition) == S_OK)
+                {
+                    if (!IsRangeCovered(ecReadOnly, tfSelection.range, pRangeComposition))
+                    {
+                       _EndComposition(pContext);
+                    }
+
+                    pRangeComposition->Release();
+                }
+            }
+        }
+    }
+```
+
+>作者没有想出如何模拟输入组合非正常终止的场景。
+
 ## 2.7.3 输入组合的意外终止
 
+将项目/属性/调试如下图设置，可以模拟输入组合的意外终止。
+
+>$(ProgramW6432)\Windows NT\Accessories\wordpad.exe
+
 ![wordpad](img/wordpad.png)
+
+## 2.7.4 插入点与文本范围
