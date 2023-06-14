@@ -106,10 +106,10 @@ Interface				|Description
 
 Interface					|Description
 -|-
-[ITfContextComposition][24]	|上下文输入组合。
-[ITfComposition][25]		|输入组合。
-[ITfCompositionSink][26]	|输入组合终止消息接收器。
+[ITfContextComposition][24]	|上下文输入组合，用于创建ITfComposition输入组合。
+[ITfComposition][25]		|输入组合，用于终止ITfComposition输入组合和操作输入组合的ITfRange文本范围。
+[ITfCompositionSink][26]	|输入组合终止消息接收器，用于在终止ITfComposition输入组合时接收通知。
 
 [24]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfContextComposition.md
 [25]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfComposition.md
-[26]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfCompositionSink.md
+[26]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfCompositionSink.md

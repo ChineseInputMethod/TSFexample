@@ -196,7 +196,9 @@ HRESULT CTextService::_HandleArrowKey(TfEditCookie ec, ITfContext *pContext, WPA
     BOOL fEqual;
     TF_SELECTION tfSelection;
     ULONG cFetched;
-
+    const ULONG cchMax = 256;
+    ULONG pcch = 0;
+    WCHAR pchText[cchMax];
     // get the selection
     if (pContext->GetSelection(ec, TF_DEFAULT_SELECTION, 1, &tfSelection, &cFetched) != S_OK ||
         cFetched != 1)
@@ -231,7 +233,14 @@ HRESULT CTextService::_HandleArrowKey(TfEditCookie ec, ITfContext *pContext, WPA
     }
 
     pContext->SetSelection(ec, 1, &tfSelection);
-
+    pRangeComposition->GetText(
+        ec,
+        TF_TF_MOVESTART,//TF_TF_IGNOREEND
+        pchText,
+        cchMax,
+        &pcch
+    );
+    pchText[pcch] = '\0';
     pRangeComposition->Release();
 
 Exit:
