@@ -113,3 +113,5 @@ Interface					|Description
 [24]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfContextComposition.md
 [25]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfComposition.md
 [26]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfCompositionSink.md
+
+## 2.8 [CompositionStringUnderline](https://github.com/ChineseInputMethod/TSFexample/tree/master/8CompositionStringUnderline)
