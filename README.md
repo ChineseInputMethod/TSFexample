@@ -115,3 +115,16 @@ Interface					|Description
 [26]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfCompositionSink.md
 
 ## 2.8 [CompositionStringUnderline](https://github.com/ChineseInputMethod/TSFexample/tree/master/8CompositionStringUnderline)
+如何转换输入组合以及提供显示属性
+
+Interface							|Description
+-|-
+[ITfDisplayAttributeProvider][27]	|显示属性提供者。
+[IEnumTfDisplayAttributeInfo][28]	|显示属性信息对象枚举器。
+[ITfDisplayAttributeInfo][29]		|显示属性信息。
+[ITfProperty][30]					|属性设置。
+
+[27]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfDisplayAttributeProvider.md
+[28]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/IEnumTfDisplayAttributeInfo.md
+[29]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfDisplayAttributeInfo.md
+[30]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfProperty.md
