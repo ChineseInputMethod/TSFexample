@@ -2,8 +2,19 @@
 
 - Server.cpp
   - Register.cpp
+- TextService.cpp
+  - KeyHandler.cpp
+    - DisplayAttribute.cpp
+  - DisplayAttributeProvider.cpp
+    - DisplayAttributeInfo.cpp
+    - EnumDisplayAttributeInfo.cpp
 
-在Register.cpp文件中，添加了注册显示属性提供者类别。
+在Register.cpp文件中，添加了注册显示属性提供者类别。<br/>
+在KeyHandler.cpp文件中，添加了设置显示属性。<br/>
+在DisplayAttributeProvider.cpp文件中，实现了ITfDisplayAttributeProvider显示属性提供者接口。<br/>
+在DisplayAttributeInfo.cpp和EnumDisplayAttributeInfo.cpp文件中，实现了为应用程序提供的输入和转换显示属性。
+
+本节介绍如何为输入组合提供显示属性。
 
 ### 2.8.1 注册显示属性提供者类别
 
@@ -43,4 +54,34 @@ BOOL RegisterCategories()
 
 输入法注册显示属性提供者类别之后，应用程序可以通过输入法提供的属性，显示输入组合的输入状态和转换状态。
 
-### 2.8.2 
+### 2.8.2 注册显示属性标识符
+
+显示属性是由应用程序获取使用的，因为COM机制和效率的原因，TSF框架并不直接通过GUID指针或引用来传递显示属性。
+而是需要将显示属性的GUID注册为TfGuidAtom，以用于输入法设置和应用程序获取显示属性。
+
+```C++
+BOOL CTextService::_InitDisplayAttributeGuidAtom()
+{
+    ITfCategoryMgr *pCategoryMgr;
+    HRESULT hr;
+
+    if (CoCreateInstance(CLSID_TF_CategoryMgr,
+                         NULL, 
+                         CLSCTX_INPROC_SERVER, 
+                         IID_ITfCategoryMgr, 
+                         (void**)&pCategoryMgr) != S_OK)
+    {
+        return FALSE;
+    }
+
+    // register the display attribute for input text.
+    hr = pCategoryMgr->RegisterGUID(c_guidDisplayAttributeInput, &_gaDisplayAttributeInput);
+
+    // register the display attribute for the converted text.
+    hr = pCategoryMgr->RegisterGUID(c_guidDisplayAttributeConverted, &_gaDisplayAttributeConverted);
+
+    pCategoryMgr->Release();
+        
+    return (hr == S_OK);
+}
+```
