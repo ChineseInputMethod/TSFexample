@@ -85,3 +85,44 @@ BOOL CTextService::_InitDisplayAttributeGuidAtom()
     return (hr == S_OK);
 }
 ```
+
+### 2.8.3 设置显示属性
+
+当用户按下编码键后，输入法将显示属性设置为输入状态。
+当用户按下空格键后，输入法将显示属性设置为转换状态。
+
+```C++
+BOOL CTextService::_SetCompositionDisplayAttributes(TfEditCookie ec, ITfContext *pContext, TfGuidAtom gaDisplayAttribute)
+{
+    ITfRange *pRangeComposition;
+    ITfProperty *pDisplayAttributeProperty;
+    HRESULT hr;
+
+    // A range and its context are required
+    if (_pComposition->GetRange(&pRangeComposition) != S_OK)
+        return FALSE;
+
+    hr = E_FAIL;
+
+    // get our the display attribute property
+    if (pContext->GetProperty(GUID_PROP_ATTRIBUTE, &pDisplayAttributeProperty) == S_OK)
+    {
+        VARIANT var;
+        // set the value over the range
+        // the application will use this guid atom to lookup the acutal rendering information
+        var.vt = VT_I4; // set a TfGuidAtom
+        var.lVal = gaDisplayAttribute; 
+//设置显示属性
+        hr = pDisplayAttributeProperty->SetValue(ec, pRangeComposition, &var);
+
+        pDisplayAttributeProperty->Release();
+    }
+
+    pRangeComposition->Release();
+    return (hr == S_OK);
+}
+```
+
+随后ITfDisplayAttributeProvider::GetDisplayAttributeInfo()方法会被调用。
+
+### 2.8.4 显示属性提供者接口

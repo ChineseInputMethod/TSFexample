@@ -119,12 +119,12 @@ Interface					|Description
 
 Interface							|Description
 -|-
-[ITfDisplayAttributeProvider][27]	|显示属性提供者。
-[IEnumTfDisplayAttributeInfo][28]	|显示属性信息对象枚举器。
+[ITfProperty][27]					|属性设置。
+[ITfDisplayAttributeProvider][28]	|显示属性提供者。
 [ITfDisplayAttributeInfo][29]		|显示属性信息。
-[ITfProperty][30]					|属性设置。
+[IEnumTfDisplayAttributeInfo][30]	|显示属性信息对象枚举器。
 
-[27]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfDisplayAttributeProvider.md
-[28]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/IEnumTfDisplayAttributeInfo.md
+[27]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfProperty.md
+[28]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfDisplayAttributeProvider.md
 [29]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfDisplayAttributeInfo.md
-[30]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfProperty.md
+[30]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/IEnumTfDisplayAttributeInfo.md
