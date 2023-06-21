@@ -126,3 +126,36 @@ BOOL CTextService::_SetCompositionDisplayAttributes(TfEditCookie ec, ITfContext 
 随后ITfDisplayAttributeProvider::GetDisplayAttributeInfo()方法会被调用。
 
 ### 2.8.4 显示属性提供者接口
+
+ITfDisplayAttributeProvider显示属性提供者接口的GetDisplayAttributeInfo()方法，创建ITfDisplayAttributeInfo显示属性信息组件对象，提供给应用程序。
+
+```C++
+STDAPI CTextService::GetDisplayAttributeInfo(REFGUID guidInfo, ITfDisplayAttributeInfo **ppInfo)
+{
+    if (ppInfo == NULL)
+        return E_INVALIDARG;
+
+    *ppInfo = NULL;
+
+    // Which display attribute GUID?
+    if (IsEqualGUID(guidInfo, c_guidDisplayAttributeInput))
+    {
+        if ((*ppInfo = new CDisplayAttributeInfoInput()) == NULL)
+            return E_OUTOFMEMORY;
+    }
+    else if (IsEqualGUID(guidInfo, c_guidDisplayAttributeConverted))
+    {
+        if ((*ppInfo = new CDisplayAttributeInfoConverted()) == NULL)
+            return E_OUTOFMEMORY;
+    }
+    else
+    {
+        return E_INVALIDARG;
+    }
+
+
+    return S_OK;
+}
+```
+
+### 2.8.5 显示属性信息组件对象
