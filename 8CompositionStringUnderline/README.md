@@ -127,7 +127,7 @@ BOOL CTextService::_SetCompositionDisplayAttributes(TfEditCookie ec, ITfContext 
 
 ### 2.8.4 显示属性提供者接口
 
-ITfDisplayAttributeProvider显示属性提供者接口的GetDisplayAttributeInfo()方法，创建ITfDisplayAttributeInfo显示属性信息组件对象，提供给应用程序。
+ITfDisplayAttributeProvider显示属性提供者接口的GetDisplayAttributeInfo()方法，创建ITfDisplayAttributeInfo显示属性信息对象，提供给应用程序。
 
 ```C++
 STDAPI CTextService::GetDisplayAttributeInfo(REFGUID guidInfo, ITfDisplayAttributeInfo **ppInfo)
@@ -158,4 +158,44 @@ STDAPI CTextService::GetDisplayAttributeInfo(REFGUID guidInfo, ITfDisplayAttribu
 }
 ```
 
-### 2.8.5 显示属性信息组件对象
+### 2.8.5 显示属性信息对象
+
+应用程序调用ITfDisplayAttributeInfo显示属性信息对象的GetAttributeInfo()方法，获取显示属性信息。
+
+```C++
+STDAPI CDisplayAttributeInfo::GetAttributeInfo(TF_DISPLAYATTRIBUTE *ptfDisplayAttr)
+{
+    HKEY hKeyAttributeInfo;
+    LONG lResult;
+    DWORD cbData;
+
+    if (ptfDisplayAttr == NULL)
+        return E_INVALIDARG;
+
+    if (_pszValueName == NULL)
+        return E_FAIL;
+
+    lResult = E_FAIL;
+
+    if (RegOpenKeyEx(HKEY_CURRENT_USER, c_szAttributeInfoKey, 0, KEY_READ, &hKeyAttributeInfo) == ERROR_SUCCESS)
+    {
+        cbData = sizeof(*ptfDisplayAttr);
+
+        lResult = RegQueryValueEx(hKeyAttributeInfo, _pszValueName,
+                                  NULL, NULL,
+                                  (LPBYTE)ptfDisplayAttr, &cbData);
+
+        RegCloseKey(hKeyAttributeInfo);
+    }
+
+    if (lResult != ERROR_SUCCESS || cbData != sizeof(*ptfDisplayAttr))
+    {
+        // return the default display attribute.
+        *ptfDisplayAttr = *_pDisplayAttribute;
+    }
+
+    return S_OK;
+}
+```
+
+### 2.8.6 清除显示属性
