@@ -199,3 +199,28 @@ STDAPI CDisplayAttributeInfo::GetAttributeInfo(TF_DISPLAYATTRIBUTE *ptfDisplayAt
 ```
 
 ### 2.8.6 清除显示属性
+
+当用户按下回车键，输入法调用ITfProperty::Clear()方法，清除显示属性。
+
+```C++
+void CTextService::_ClearCompositionDisplayAttributes(TfEditCookie ec, ITfContext *pContext)
+{
+    ITfRange *pRangeComposition;
+    ITfProperty *pDisplayAttributeProperty;
+
+    // get the compositon range.
+    if (_pComposition->GetRange(&pRangeComposition) != S_OK)
+        return;
+
+    // get our the display attribute property
+    if (pContext->GetProperty(GUID_PROP_ATTRIBUTE, &pDisplayAttributeProperty) == S_OK)
+    {
+        // clear the value over the range
+        pDisplayAttributeProperty->Clear(ec, pRangeComposition);
+
+        pDisplayAttributeProperty->Release();
+    }
+
+    pRangeComposition->Release();
+}
+```
