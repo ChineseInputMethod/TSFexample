@@ -3,8 +3,9 @@
 - Server.cpp
   - Register.cpp
 - TextService.cpp
-  - KeyHandler.cpp
-    - DisplayAttribute.cpp
+  - KeyEventSink.cpp
+    - KeyHandler.cpp
+      - DisplayAttribute.cpp
   - DisplayAttributeProvider.cpp
     - DisplayAttributeInfo.cpp
     - EnumDisplayAttributeInfo.cpp

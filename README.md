@@ -128,3 +128,9 @@ Interface							|Description
 [28]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfDisplayAttributeProvider.md
 [29]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfDisplayAttributeInfo.md
 [30]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/IEnumTfDisplayAttributeInfo.md
+
+## 2.9 [CandidateList](https://github.com/ChineseInputMethod/TSFexample/tree/master/9CandidateList)
+如何创建候选窗口以及跟踪布局更改
+
+Interface						|Description
+-|-
