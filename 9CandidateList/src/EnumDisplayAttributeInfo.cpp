@@ -139,7 +139,7 @@ STDAPI CEnumDisplayAttributeInfo::Clone(IEnumTfDisplayAttributeInfo **ppEnum)
 
 STDAPI CEnumDisplayAttributeInfo::Next(ULONG ulCount, ITfDisplayAttributeInfo **rgInfo, ULONG *pcFetched)
 {
-    ITfDisplayAttributeInfo *pDisplayAttributeInfo;
+    ITfDisplayAttributeInfo *pDisplayAttributeInfo= NULL;
     ULONG cFetched;
 
     cFetched = 0;
