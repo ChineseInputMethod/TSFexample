@@ -134,10 +134,10 @@ Interface							|Description
 
 Interface						|Description
 -|-
-[ITfContextKeyEventSink][31]	|上下文键盘事件接收器。
-[ITfTextLayoutSink][32]			|文本布局消息接收器。
-[ITfContextView][33]			|上下文视图对象。
+[ITfContextView][31]			|上下文视图对象。
+[ITfContextKeyEventSink][32]	|上下文键盘事件接收器。
+[ITfTextLayoutSink][33]			|文本布局消息接收器。
 
-[31]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfContextKeyEventSink.md
-[32]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfTextLayoutSink.md
-[33]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfContextView.md
+[31]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfContextView.md
+[32]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfContextKeyEventSink.md
+[33]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfTextLayoutSink.md

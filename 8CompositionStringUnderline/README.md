@@ -17,7 +17,7 @@
 
 本节介绍如何为输入组合提供显示属性。
 
-### 2.8.1 注册显示属性提供者类别
+## 2.8.1 注册显示属性提供者类别
 
 可以像第6节介绍的注册键盘文本服务那样，注册显示属性提供者类别。
 
@@ -55,7 +55,7 @@ BOOL RegisterCategories()
 
 输入法注册显示属性提供者类别之后，应用程序可以通过输入法提供的属性，显示输入组合的输入状态和转换状态。
 
-### 2.8.2 注册显示属性标识符
+## 2.8.2 注册显示属性标识符
 
 显示属性是由应用程序获取使用的，因为COM机制和效率的原因，TSF框架并不直接通过GUID指针或引用来传递显示属性。
 而是需要将显示属性的GUID注册为TfGuidAtom，以用于输入法设置和应用程序获取显示属性。
@@ -87,7 +87,7 @@ BOOL CTextService::_InitDisplayAttributeGuidAtom()
 }
 ```
 
-### 2.8.3 设置显示属性
+## 2.8.3 设置显示属性
 
 当用户按下编码键后，输入法将显示属性设置为输入状态。
 当用户按下空格键后，输入法将显示属性设置为转换状态。
@@ -126,7 +126,7 @@ BOOL CTextService::_SetCompositionDisplayAttributes(TfEditCookie ec, ITfContext 
 
 随后ITfDisplayAttributeProvider::GetDisplayAttributeInfo()方法会被调用。
 
-### 2.8.4 显示属性提供者接口
+## 2.8.4 显示属性提供者接口
 
 ITfDisplayAttributeProvider显示属性提供者接口的GetDisplayAttributeInfo()方法，创建ITfDisplayAttributeInfo显示属性信息对象，提供给应用程序。
 
@@ -159,7 +159,7 @@ STDAPI CTextService::GetDisplayAttributeInfo(REFGUID guidInfo, ITfDisplayAttribu
 }
 ```
 
-### 2.8.5 显示属性信息对象
+## 2.8.5 显示属性信息对象
 
 应用程序调用ITfDisplayAttributeInfo显示属性信息对象的GetAttributeInfo()方法，获取显示属性信息。
 
@@ -199,7 +199,7 @@ STDAPI CDisplayAttributeInfo::GetAttributeInfo(TF_DISPLAYATTRIBUTE *ptfDisplayAt
 }
 ```
 
-### 2.8.6 清除显示属性
+## 2.8.6 清除显示属性
 
 当用户按下回车键，输入法调用ITfProperty::Clear()方法，清除显示属性。
 

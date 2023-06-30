@@ -12,7 +12,7 @@ CandidateWindow.cpp
 
 本节介绍如何实现一个基本的候选窗口，本节未实现ITfCandidateList接口。
 
-### 2.9.1 候选列表类
+## 2.9.1 候选列表类
 
 如同MFC风格的应用程序那样，TSF候选窗口的实现，也是UI、数据和控制相分离的。
 在CCandidateList候选列表类中，继承了ITfContextKeyEventSink上下文键盘事件接收器和ITfTextLayoutSink文本布局消息接收器。
@@ -48,7 +48,7 @@ public:
 
 当候选窗口开启时，由候选窗口类的上下文键盘事件接收器处理键盘事件。通过候选窗口类的文本布局消息接收器实现候选窗口的光标跟随。
 
-### 2.9.2 候选列表对象
+## 2.9.2 候选列表对象
 
 >学了很多年C，一直感觉不到自己有多少进步。直到看了《C Primer Plus》，感觉自己终于算是入了一点门。
 很多年前就看过C++，实在是学不会。看过《C Primer Plus》后，再次鼓起勇气学习C++，乘胜追击看《C++ Primer Plus》。
@@ -111,4 +111,125 @@ HRESULT CTextService::_HandleSpaceKey(TfEditCookie ec, ITfContext *pContext)
 }
 ```
 
-### 2.9.3 候选列表对象创建过程
+## 2.9.3 候选列表对象创建过程
+
+本小节对CCandidateList::_StartCandidateList()函数进行拆分讲解。
+
+### 2.9.3.1 清除候选列表
+
+首先清除以请存在的候选列表。
+
+```C++
+HRESULT CCandidateList::_StartCandidateList(TfClientId tfClientId, ITfDocumentMgr *pDocumentMgr, ITfContext *pContextDocument, TfEditCookie ec, ITfRange *pRangeComposition)
+{
+    TfEditCookie ecTmp;
+    HRESULT hr = E_FAIL;
+    BOOL fClipped;
+
+    //
+    // clear the previous candidate list.
+    // only one candidate window is supported.
+    //
+    _EndCandidateList();
+```
+
+### 2.9.3.2 创建上下文
+
+该部分在DOC目录下，原文档有详细讲解。
+
+```C++
+    //
+    // create a new context on the document manager object for
+    // the candidate ui.
+    //
+    if (FAILED(pDocumentMgr->CreateContext(tfClientId, 0, NULL, &_pContextCandidateWindow, &ecTmp)))
+        return E_FAIL;
+
+    //
+    // push the new context. 
+    //
+    if (FAILED(pDocumentMgr->Push(_pContextCandidateWindow)))
+        goto Exit;
+
+    _pDocumentMgr = pDocumentMgr;
+    _pDocumentMgr->AddRef();
+
+    _pContextDocument = pContextDocument;
+    _pContextDocument->AddRef();
+
+    _pRangeComposition = pRangeComposition;
+    _pRangeComposition->AddRef();
+```
+
+### 2.9.3.3 安装上下文键盘事件接收器
+
+在新创建的上下文中安装上下文键盘事件接收器。
+
+```C++
+    // 
+    // advise ITfContextKeyEventSink to the new context.
+    // 
+    if (FAILED(_AdviseContextKeyEventSink()))
+        goto Exit;
+```
+
+### 2.9.3.4 安装文本布局消息接收器
+
+```C++
+    // 
+    // advise ITfTextLayoutSink to the document context.
+    // 
+    if (FAILED(_AdviseTextLayoutSink()))
+        goto Exit;
+```
+
+### 2.9.3.5 创建候选列表窗口
+
+```C++
+    // 
+    // create an instance of CCandidateWindow class.
+    //
+    if (_pCandidateWindow = new CCandidateWindow())
+    {
+        RECT rc;
+        ITfContextView *pContextView;
+
+        //
+        // get an active view of the document context.
+        //
+        if (FAILED(pContextDocument->GetActiveView(&pContextView)))
+            goto Exit;
+
+        //
+        // get text extent for the range of the composition.
+        //
+        if (FAILED(pContextView->GetTextExt(ec, pRangeComposition, &rc, &fClipped)))
+            goto Exit;
+
+        pContextView->Release();
+
+        
+        //
+        // create the dummy candidate window
+        //
+        if (!_pCandidateWindow->_Create())
+            goto Exit;
+
+        _pCandidateWindow->_Move(rc.left, rc.bottom);
+        _pCandidateWindow->_Show();
+
+        hr = S_OK;
+    }
+
+Exit:
+    if (FAILED(hr))
+    {
+        _EndCandidateList();
+    }
+    return hr;
+}
+```
+
+## 2.9.4 处理上下文键盘事件
+
+## 2.9.5 处理文本布局消息
