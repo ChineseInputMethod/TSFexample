@@ -134,8 +134,8 @@ Interface							|Description
 
 Interface						|Description
 -|-
-[ITfContextView][31]			|上下文视图对象。
-[ITfContextKeyEventSink][32]	|上下文键盘事件接收器。
+[ITfContextView][31]			|上下文视图对象，由客户端(应用程序或文本服务)用来获取上下文视图的信息。
+[ITfContextKeyEventSink][32]	|上下文键盘事件接收器，用于接收输入上下文中发生的键盘事件通知，保留的键事件和筛选的键事件不会传递到ITfContextKeyEventSink事件接收器。
 [ITfTextLayoutSink][33]			|文本布局消息接收器。
 
 [31]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfContextView.md

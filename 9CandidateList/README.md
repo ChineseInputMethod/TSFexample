@@ -175,6 +175,8 @@ HRESULT CCandidateList::_StartCandidateList(TfClientId tfClientId, ITfDocumentMg
 
 ### 2.9.3.4 安装文本布局消息接收器
 
+在文档上下文中安装文本布局消息接收器。
+
 ```C++
     // 
     // advise ITfTextLayoutSink to the document context.
@@ -184,6 +186,8 @@ HRESULT CCandidateList::_StartCandidateList(TfClientId tfClientId, ITfDocumentMg
 ```
 
 ### 2.9.3.5 创建候选列表窗口
+
+本段代码演示了，如何创建一个在输入组合下方显示的候选列表窗口。
 
 ```C++
     // 
@@ -231,5 +235,57 @@ Exit:
 ```
 
 ## 2.9.4 处理上下文键盘事件
+
+请比较KeyEventSink.cpp文件中的_InitKeyEventSink()函数和以下代码内容。
+
+```C++
+HRESULT CCandidateList::_AdviseContextKeyEventSink()
+{
+    HRESULT hr;
+    ITfSource *pSource = NULL;
+
+    hr = E_FAIL;
+
+    if (FAILED(_pContextCandidateWindow->QueryInterface(IID_ITfSource, (void **)&pSource)))
+        goto Exit;
+
+    if (FAILED(pSource->AdviseSink(IID_ITfContextKeyEventSink, (ITfContextKeyEventSink *)this, &_dwCookieContextKeyEventSink)))
+        goto Exit;
+
+    hr = S_OK;
+
+Exit:
+    if (pSource != NULL)
+        pSource->Release();
+    return hr;
+}
+```
+
+将上下文键盘事件注册到新创建的上下文中后，上下文键盘事件接收器也会收到键盘事件。
+所以，本节示例代码的逻辑是，当候选列表窗口开启时，键盘事件接收器不处理键盘事件。
+相关代码如下：
+
+```C++
+BOOL CTextService::_IsKeyEaten(ITfContext *pContext, WPARAM wParam)
+{
+    // if the keyboard is disabled, keys are not consumed.
+    if (_IsKeyboardDisabled())
+        return FALSE;
+
+    // if the keyboard is closed, keys are not consumed.
+    if (!_IsKeyboardOpen())
+        return FALSE;
+
+    //
+    // The text service key handler does not do anything while the candidate
+    // window is shown.
+    // The candidate list handles the keys through ITfContextKeyEventSink.
+    //如果候选窗口开启，文本服务不再处理键盘事件。
+    if (_pCandidateList &&
+        _pCandidateList->_IsContextCandidateWindow(pContext))
+    {
+        return FALSE;
+    }
+```
 
 ## 2.9.5 处理文本布局消息
