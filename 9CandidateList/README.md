@@ -289,3 +289,77 @@ BOOL CTextService::_IsKeyEaten(ITfContext *pContext, WPARAM wParam)
 ```
 
 ## 2.9.5 处理文本布局消息
+
+当文本布局发生改变时，需要重绘候选列表窗口。本节演示的是获取屏幕坐标，实现一个光标跟随的候选列表窗口。
+
+### 2.9.5.1 跟踪文本布局消息
+
+当文本布局发生改变时，CCandidateList::OnLayoutChange()方法被调用。
+输入法创建一个ITfEditSession编辑会话对象，请求编辑会话。
+
+```C++
+STDAPI CCandidateList::OnLayoutChange(ITfContext *pContext, TfLayoutCode lcode, ITfContextView *pContextView)
+{
+    if (pContext != _pContextDocument)
+        return S_OK;
+
+    switch (lcode)
+    {
+        case TF_LC_CHANGE:
+            if (_pCandidateWindow != NULL)
+            {
+                CGetTextExtentEditSession *pEditSession;
+
+                if ((pEditSession = new CGetTextExtentEditSession(_pTextService, pContext, pContextView, _pRangeComposition, _pCandidateWindow)) != NULL)
+                {
+                    HRESULT hr;
+                    // a lock is required
+                    // nb: this method is one of the few places where it is legal to use
+                    // the TF_ES_SYNC flag
+                    pContext->RequestEditSession(_pTextService->_GetClientId(), pEditSession, TF_ES_SYNC | TF_ES_READ, &hr);
+
+                    pEditSession->Release();
+                 }
+            }
+            break;
+
+        case TF_LC_DESTROY:
+            _EndCandidateList();
+            break;
+
+    }
+    return S_OK;
+}
+```
+
+### 2.9.5.2 获取屏幕坐标
+
+输入法调用_pContextView->GetTextExt()函数，获取_pRangeComposition文本范围的屏幕坐标。
+
+```C++
+STDAPI CGetTextExtentEditSession::DoEditSession(TfEditCookie ec)
+{
+    RECT rc;
+    BOOL fClipped;
+
+    if (SUCCEEDED(_pContextView->GetTextExt(ec, , &rc, &fClipped)))
+        _pCandidateWindow->_Move(rc.left, rc.bottom);
+    return S_OK;
+}
+```
+
+### 2.9.5.3 移动候选列表窗口
+
+移动候选列表窗口到输入组合起点的左下方。
+
+```C++
+void CCandidateWindow::_Move(int x, int y)
+{
+    if (_hwnd != NULL)
+    {
+        RECT rc;
+        GetWindowRect(_hwnd, &rc);
+        MoveWindow(_hwnd, x, y, rc.right - rc.left, rc.bottom - rc.top, TRUE);
+    }
+}
+```
