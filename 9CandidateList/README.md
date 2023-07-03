@@ -363,3 +363,46 @@ void CCandidateWindow::_Move(int x, int y)
     }
 }
 ```
+
+### 2.9.6 终止候选列表
+
+当释放回车键时，输入法调用CCandidateList::_EndCandidateList()方法，终止候选列表。
+
+```C++
+void CCandidateList::_EndCandidateList()
+{
+    if (_pCandidateWindow)
+    {
+        _pCandidateWindow->_Destroy();
+        delete _pCandidateWindow;
+        _pCandidateWindow = NULL;
+    }
+
+    if (_pRangeComposition)
+    {
+       _pRangeComposition->Release();
+       _pRangeComposition = NULL;
+    }
+
+    if (_pContextCandidateWindow)
+    {
+       _UnadviseContextKeyEventSink();
+       _pContextCandidateWindow->Release();
+       _pContextCandidateWindow = NULL;
+    }
+
+    if (_pContextDocument)
+    {
+       _UnadviseTextLayoutSink();
+       _pContextDocument->Release();
+       _pContextDocument = NULL;
+    }
+
+    if (_pDocumentMgr)
+    {
+       _pDocumentMgr->Pop(0);
+       _pDocumentMgr->Release();
+       _pDocumentMgr = NULL;
+    }
+}
+```
