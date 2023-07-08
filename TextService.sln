@@ -21,6 +21,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "8CompositionStringUnderline
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "9CandidateList", "9CandidateList\9CandidateList.vcxproj", "{65458F56-74AA-4D19-903E-A3AA679B281E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PropertyTextService", "PropertyTextService\PropertyTextService.vcxproj", "{8CDBDD38-D496-44C2-8CB1-4145E6CF0A12}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PropertyMonitor", "PropertyMonitor\PropertyMonitor.vcxproj", "{62760C2B-CCDB-4B34-8AAB-7963DB223F25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -101,6 +105,22 @@ Global
 		{65458F56-74AA-4D19-903E-A3AA679B281E}.Release|x64.Build.0 = Release|x64
 		{65458F56-74AA-4D19-903E-A3AA679B281E}.Release|x86.ActiveCfg = Release|Win32
 		{65458F56-74AA-4D19-903E-A3AA679B281E}.Release|x86.Build.0 = Release|Win32
+		{8CDBDD38-D496-44C2-8CB1-4145E6CF0A12}.Debug|x64.ActiveCfg = Debug|x64
+		{8CDBDD38-D496-44C2-8CB1-4145E6CF0A12}.Debug|x64.Build.0 = Debug|x64
+		{8CDBDD38-D496-44C2-8CB1-4145E6CF0A12}.Debug|x86.ActiveCfg = Debug|Win32
+		{8CDBDD38-D496-44C2-8CB1-4145E6CF0A12}.Debug|x86.Build.0 = Debug|Win32
+		{8CDBDD38-D496-44C2-8CB1-4145E6CF0A12}.Release|x64.ActiveCfg = Release|x64
+		{8CDBDD38-D496-44C2-8CB1-4145E6CF0A12}.Release|x64.Build.0 = Release|x64
+		{8CDBDD38-D496-44C2-8CB1-4145E6CF0A12}.Release|x86.ActiveCfg = Release|Win32
+		{8CDBDD38-D496-44C2-8CB1-4145E6CF0A12}.Release|x86.Build.0 = Release|Win32
+		{62760C2B-CCDB-4B34-8AAB-7963DB223F25}.Debug|x64.ActiveCfg = Debug|x64
+		{62760C2B-CCDB-4B34-8AAB-7963DB223F25}.Debug|x64.Build.0 = Debug|x64
+		{62760C2B-CCDB-4B34-8AAB-7963DB223F25}.Debug|x86.ActiveCfg = Debug|Win32
+		{62760C2B-CCDB-4B34-8AAB-7963DB223F25}.Debug|x86.Build.0 = Debug|Win32
+		{62760C2B-CCDB-4B34-8AAB-7963DB223F25}.Release|x64.ActiveCfg = Release|x64
+		{62760C2B-CCDB-4B34-8AAB-7963DB223F25}.Release|x64.Build.0 = Release|x64
+		{62760C2B-CCDB-4B34-8AAB-7963DB223F25}.Release|x86.ActiveCfg = Release|Win32
+		{62760C2B-CCDB-4B34-8AAB-7963DB223F25}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
