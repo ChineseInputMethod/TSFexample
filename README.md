@@ -143,15 +143,17 @@ Interface						|Description
 [33]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfTextLayoutSink.md
 
 ## 2.A [PropertyMonitor](https://github.com/ChineseInputMethod/TSFexample/tree/master/PropertyMonitor)
-如何转储显示属性以及响应焦点消息
+如何转储属性以及响应线程焦点消息
 
 Interface						|Description
 -|-
-[ITfDisplayAttributeMgr][34]	|显示属性管理器。
-[ITfThreadFocusSink][35]		|线程输入焦点消息接收器。
+[IEnumTfProperties][34]			|属性对象枚举器。
+[ITfDisplayAttributeMgr][35]	|显示属性管理器。
+[ITfThreadFocusSink][36]		|线程输入焦点消息接收器。
 
-[34]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfDisplayAttributeMgr.md
-[35]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfThreadFocusSink.md
+[34]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/IEnumTfProperties.md
+[35]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfDisplayAttributeMgr.md
+[36]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfThreadFocusSink.md
 
 ## 2.B [PropertyTextService](https://github.com/ChineseInputMethod/TSFexample/tree/master/PropertyTextService)
 如何创建候选窗口以及跟踪布局更改
