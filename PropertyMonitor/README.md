@@ -8,13 +8,14 @@
 
 在ThreadFocusSink.cpp文件中，实现了线程输入焦点消息接收器。<br/>
 在DumpProperties.cpp文件中，演示了如何监视显示属性。<br/>
-在MemoryStream.cpp文件中，管理了一块内存流对象。<br/>
+在MemoryStream.cpp文件中，管理了一个内存流对象。<br/>
 在PopupWindow.cpp文件中，监视了上下文中的显示属性。
 
 本节介绍如何监视上下文属性，以及响应线程焦点消息。
 
->$(SystemRoot)\system32\regsvr32.exe /u
-$(TargetPath)
+本节输入法会随虚拟机启动被激活，所以再次调试时，需要先卸载本节输入法，然后重启虚拟机。以管理员身份启动CMD，然后执行如下命令：
+
+>regsvr32.exe /u 输入法安装的目录\PropertyMonitor.dll
 
 ## 2.A.1 演示的主要流程
 
@@ -102,3 +103,49 @@ Exit:
 ```
 
 ## 2.A.2 内存流对象
+
+在输入法激活的时候，创建了一个内存流对象，用于保存获取的属性，然后在监视窗口输出。
+
+```C++
+void CPropertyMonitorTextService::_DumpProperties(TfEditCookie ec, ITfContext *pContext)
+{
+IStream* CreateMemoryStream()
+{
+    LPSTREAM lpStream = NULL;
+
+    // Create a stream object on a memory block.
+    HGLOBAL hGlobal = GlobalAlloc(GMEM_MOVEABLE|GMEM_SHARE, 0);
+    if (hGlobal != NULL)
+    {
+        HRESULT hr ;
+        if (FAILED(hr = CreateStreamOnHGlobal(hGlobal, TRUE, &lpStream)))
+        {
+             GlobalFree(hGlobal);
+        }
+    }
+
+    return lpStream;
+}
+```
+
+每次调用_DumpProperties()函数的时候，先清除已有的流。
+
+```C++
+void ClearStream(IStream *pStream)
+{
+    ULARGE_INTEGER ull;
+    ull.QuadPart = 0;
+    pStream->SetSize(ull);
+}
+```
+
+然后，在每次转储属性的时候调用AddStringToStream()函数，将属性保存到内存流中。
+
+```C++
+void AddStringToStream(IStream *pStream, const WCHAR *psz)
+{
+    pStream->Write(psz, lstrlenW(psz) * sizeof(WCHAR), NULL);
+}
+```
+
+## 2.A.2 
