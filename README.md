@@ -143,11 +143,11 @@ Interface						|Description
 [33]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfTextLayoutSink.md
 
 ## 2.A [PropertyMonitor](https://github.com/ChineseInputMethod/TSFexample/tree/master/PropertyMonitor)
-如何转储属性以及响应线程焦点消息
+如何转储文档属性以及响应焦点消息
 
 Interface						|Description
 -|-
-[IEnumTfProperties][34]			|属性对象枚举器。
+[IEnumTfProperties][34]			|属性对象枚举器，用于枚举文档属性。
 [ITfDisplayAttributeMgr][35]	|显示属性管理器。
 [ITfThreadFocusSink][36]		|线程输入焦点消息接收器。
 

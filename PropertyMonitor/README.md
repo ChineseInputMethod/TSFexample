@@ -71,7 +71,7 @@ void CPropertyMonitorTextService::_DumpProperties(TfEditCookie ec, ITfContext *p
         goto Exit;
 //## 2.A.2 内存流对象
     ClearStream(_pMemStream);
- 
+//## 2.A.3 枚举文档属性
     while (penum->Next(1, &pprop, NULL) == S_OK)
     {
         IEnumTfRanges *penumRanges;
@@ -148,4 +148,54 @@ void AddStringToStream(IStream *pStream, const WCHAR *psz)
 }
 ```
 
-## 2.A.2 
+## 2.A.3 枚举文档属性
+
+在_DumpProperties()函数中，首先获取IEnumTfProperties属性对象枚举器。
+
+```C++
+void CPropertyMonitorTextService::_DumpProperties(TfEditCookie ec, ITfContext *pContext)
+{
+    IEnumTfProperties *penum = NULL;
+    ITfProperty *pprop;
+
+    if (FAILED(pContext->EnumProperties(&penum)))
+        goto Exit;
+```
+
+然后枚举文档属性。
+
+```C++
+    while (penum->Next(1, &pprop, NULL) == S_OK)
+    {
+        IEnumTfRanges *penumRanges;
+        GUID guid;
+
+        pprop->GetType(&guid);
+        _DumpPropertyInfo(guid);
+```
+
+将文档属性的GUID和描述存储到内存流中。
+
+```C++
+void CPropertyMonitorTextService::_DumpPropertyInfo(REFGUID rguid)
+{
+    WCHAR sz[512];
+    CLSIDToStringW(rguid, sz);
+    AddStringToStream(_pMemStream, sz);
+
+    int i = 0;
+    while (!IsEqualGUID(*g_giKnownGuids[i].pguid, GUID_NULL))
+    {
+        if (IsEqualGUID(*g_giKnownGuids[i].pguid, rguid))
+        {
+            AddStringToStream(_pMemStream, L"\t");
+            AddStringToStream(_pMemStream, g_giKnownGuids[i].szDesc);
+            break;
+        }
+        i++;
+    }
+    AddStringToStream(_pMemStream, L"\r\n");
+}
+```
+
+## 2.A.4 枚举文本范围
