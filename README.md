@@ -148,12 +148,14 @@ Interface						|Description
 Interface						|Description
 -|-
 [IEnumTfProperties][34]			|属性对象枚举器，用于枚举文档属性。
-[ITfDisplayAttributeMgr][35]	|显示属性管理器。
-[ITfThreadFocusSink][36]		|线程输入焦点消息接收器。
+[ITfReadOnlyProperty][35]		|只读属性，ITfProperty继承此接口。
+[ITfDisplayAttributeMgr][36]	|显示属性管理器。
+[ITfThreadFocusSink][37]		|线程输入焦点消息接收器。
 
 [34]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/IEnumTfProperties.md
-[35]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfDisplayAttributeMgr.md
-[36]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfThreadFocusSink.md
+[35]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfReadOnlyProperty.md
+[36]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/ITfDisplayAttributeMgr.md
+[37]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfThreadFocusSink.md
 
 ## 2.B [PropertyTextService](https://github.com/ChineseInputMethod/TSFexample/tree/master/PropertyTextService)
 如何创建候选窗口以及跟踪布局更改

@@ -79,7 +79,7 @@ void CPropertyMonitorTextService::_DumpProperties(TfEditCookie ec, ITfContext *p
 
         pprop->GetType(&guid);
         _DumpPropertyInfo(guid);
-
+## 2.A.4 枚举属性的文本范围
         if (SUCCEEDED(pprop->EnumRanges(ec, &penumRanges, NULL)))
         {
             ITfRange *prange;
@@ -198,4 +198,68 @@ void CPropertyMonitorTextService::_DumpPropertyInfo(REFGUID rguid)
 }
 ```
 
-## 2.A.4 枚举文本范围
+## 2.A.4 枚举属性的文本范围
+
+如果属性具有文本范围，那么枚举属性的文本范围。
+
+```C++
+        if (SUCCEEDED(pprop->EnumRanges(ec, &penumRanges, NULL)))
+        {
+            ITfRange *prange;
+            while(penumRanges->Next(1, &prange, NULL) == S_OK)
+            {
+                _DumpPropertyRange(guid, ec, pprop, prange);
+                prange->Release();
+            }
+            penumRanges->Release();
+        }
+```
+
+在_DumpPropertyRange()函数中，首先将文本范围的起始、终止锚定点保存到内存流中。
+
+```C++
+void CPropertyMonitorTextService::_DumpPropertyRange(REFGUID rguid, TfEditCookie ec, ITfProperty *pprop, ITfRange *prange)
+{
+    WCHAR sz[512];
+
+    LONG acp;
+    LONG cch;
+
+    if (SUCCEEDED(_GetTextExtent(ec, prange, &acp, &cch)))
+    {
+        wsprintfW(sz, L"%d\t%d", acp, cch);
+        AddStringToStream(_pMemStream, sz);
+```
+
+然后将文本所对应属性的值，保存到内存流中。
+
+```C++
+//这一部分，在附加B小节中继续讲解。
+        VARIANT var;
+        VariantInit(&var);
+        
+        if (SUCCEEDED(pprop->GetValue(ec, prange, &var)))
+        {
+...
+            // AddStringToStream(_pMemStream, L"\t");
+            // _DumpVariant(&var);
+
+            VariantClear(&var);
+        }
+```
+
+最后，将文本内容保存到字节流中。
+
+```C++
+//源代码有BUG，已修正。
+        AddStringToStream(_pMemStream, L"\tText:\"");
+        _DumpRange(ec, prange);
+        AddStringToStream(_pMemStream, L"\"");
+
+        AddStringToStream(_pMemStream, L"\r\n");
+
+    }
+}
+```
+
+## 2.A.5 将内存流输出到窗口中

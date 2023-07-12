@@ -221,7 +221,7 @@ HRESULT CPropertyMonitorTextService::_GetTextLengthInRange(TfEditCookie ec, ITfR
     {
         WCHAR sz[64];
         ULONG cchTemp = 0;
-        while ((pRange->GetText(ec, TF_TF_MOVESTART, sz, sizeof(sz) / sizeof(WCHAR), &cchTemp) == S_OK) && cchTemp)
+        while ((pTempRange->GetText(ec, TF_TF_MOVESTART, sz, sizeof(sz) / sizeof(WCHAR), &cchTemp) == S_OK) && cchTemp)
         {
             *pcch += cchTemp;
         }
