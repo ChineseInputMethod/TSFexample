@@ -13,13 +13,13 @@
 
 本节介绍如何监视上下文属性，以及响应线程焦点消息。
 
-本节输入法会随虚拟机启动被激活，所以再次调试时，需要先卸载本节输入法，然后重启虚拟机。以管理员身份启动CMD，然后执行如下命令：
+## 2.A.1 演示的主要流程
+
+本节输入法会随系统启动被激活，所以再次调试时，需要先卸载本节输入法，然后重启虚拟机。以管理员身份启动CMD，然后执行如下命令：
 
 >regsvr32.exe /u 输入法安装的目录\PropertyMonitor.dll
 
-## 2.A.1 演示的主要流程
-
-当用任意输入法按下编码键后，本节输入法的ITfTextEditSink编辑会话完成消息接收器被调用。
+当使用任意输入法按下编码键后，本节输入法的ITfTextEditSink编辑会话完成消息接收器被调用。
 
 ```C++
 STDAPI CPropertyMonitorTextService::OnEndEdit(ITfContext *pContext, TfEditCookie ecReadOnly, ITfEditRecord *pEditRecord)
@@ -92,7 +92,7 @@ void CPropertyMonitorTextService::_DumpProperties(TfEditCookie ec, ITfContext *p
         }
         pprop->Release();
     }
-
+## 2.A.5 将流对象输出到窗口中
     _ShowPopupWindow();
 
 Exit:
@@ -248,10 +248,10 @@ void CPropertyMonitorTextService::_DumpPropertyRange(REFGUID rguid, TfEditCookie
         }
 ```
 
-最后，将文本内容保存到字节流中。
+最后，将文本内容保存到内存流中。
 
 ```C++
-//源代码有BUG，已修正。
+
         AddStringToStream(_pMemStream, L"\tText:\"");
         _DumpRange(ec, prange);
         AddStringToStream(_pMemStream, L"\"");
@@ -262,4 +262,23 @@ void CPropertyMonitorTextService::_DumpPropertyRange(REFGUID rguid, TfEditCookie
 }
 ```
 
-## 2.A.5 将内存流输出到窗口中
+## 2.A.5 将流对象输出到窗口中
+
+_DumpPropertyRange()函数最后调用_ShowPopupWindow()函数，显示内存流对象中的内容。
+
+```C++
+void CPropertyMonitorTextService::_ShowPopupWindow()
+{
+    if (!_pPopupWindow)
+        _pPopupWindow = new CPropertyPopupWindow;
+
+    if (_pPopupWindow)
+    {
+        _pPopupWindow->CreateWnd();
+        _pPopupWindow->SetString(_pMemStream);
+        _pPopupWindow->Show();
+    }
+}
+```
+
+## 2.A.6 线程输入焦点消息接收器

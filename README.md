@@ -149,7 +149,7 @@ Interface						|Description
 -|-
 [IEnumTfProperties][34]			|属性对象枚举器，用于枚举文档属性。
 [ITfReadOnlyProperty][35]		|只读属性，ITfProperty继承此接口。
-[ITfDisplayAttributeMgr][36]	|显示属性管理器。
+[ITfDisplayAttributeMgr][36]	|显示属性管理器，由应用程序用来获取和枚举显示属性。
 [ITfThreadFocusSink][37]		|线程输入焦点消息接收器。
 
 [34]: https://github.com/ChineseInputMethod/Interface/blob/master/TSFmanager/IEnumTfProperties.md
