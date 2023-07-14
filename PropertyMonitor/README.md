@@ -282,3 +282,16 @@ void CPropertyMonitorTextService::_ShowPopupWindow()
 ```
 
 ## 2.A.6 线程输入焦点消息接收器
+
+当线程获得输入焦点时，调用ITfThreadFocusSink线程输入焦点消息接收器，显示属性监视窗口。
+
+```C++
+STDAPI CPropertyMonitorTextService::OnSetThreadFocus()
+{
+    if (_pPopupWindow)
+    {
+       _pPopupWindow->Show();
+    }
+    return S_OK;
+}
+```
