@@ -158,11 +158,12 @@ Interface						|Description
 [37]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfThreadFocusSink.md
 
 ## 2.B [PropertyTextService](https://github.com/ChineseInputMethod/TSFexample/tree/master/PropertyTextService)
-如何创建候选窗口以及跟踪布局更改
+如何创建属性以及将属性附加到文本
 
 Interface						|Description
 -|-
-[ITfCreatePropertyStore][34]	|创建属性存储。
-[ITfPropertyStore][34]			|属性存储。
+[ITfPropertyStore][38]			|属性存储。
+[ITfCreatePropertyStore][39]	|创建属性存储。
 
-[34]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfCreatePropertyStore.md
+[38]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfPropertyStore.md
+[39]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfCreatePropertyStore.md
