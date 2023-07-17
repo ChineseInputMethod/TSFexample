@@ -163,7 +163,7 @@ Interface						|Description
 Interface						|Description
 -|-
 [ITfPropertyStore][38]			|属性存储。
-[ITfCreatePropertyStore][39]	|创建属性存储。
+[ITfCreatePropertyStore][39]	|创建属性存储，本节未演示此接口。
 
 [38]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfPropertyStore.md
 [39]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfCreatePropertyStore.md

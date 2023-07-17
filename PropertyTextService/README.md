@@ -21,5 +21,16 @@
 
 >$(ProgramW6432)\Windows NT\Accessories\wordpad.exe
 
+GUID_TFCAT_PROPSTYLE_STATICCOMPACT和GUID_TFCAT_PROPSTYLE_STATIC属性的演示过程相同。
+用微软拼音输入任意汉字，然后用鼠标选中汉字，在语言栏选择"Attach Static Compact Property to selection"或"Attach Static Property to selection"的子菜单项。
+
+![select](doc/PropertyTextService.JPG)
+
+然后就可以在上一节的属性监视窗口中观察到属性被附加到了选择的文本范围。
+
+![select](doc/PropertyMonitor.JPG)
+
+## 2.B.2 将自定义属性附加到文本范围
+
 ```C++
 ```
