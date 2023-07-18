@@ -32,5 +32,42 @@ GUID_TFCAT_PROPSTYLE_STATICCOMPACT和GUID_TFCAT_PROPSTYLE_STATIC属性的演示�
 
 ## 2.B.2 将自定义属性附加到文本范围
 
+与静态属性不同，当在语言栏选择"Attach Cutsom Property to selection"菜单项时，输入法创建了一个ITfPropertyStore属性存储对象。
+然后调用pProperty->SetValueStore()方法，使用属性存储对象设置文本范围的属性值。
+
 ```C++
+STDAPI CCustomPropertyEditSession::DoEditSession(TfEditCookie ec)
+{
+    ITfProperty *pProperty;
+    TF_SELECTION tfSelection;
+    ULONG cFetched;
+
+    if (_pContext->GetSelection(ec, TF_DEFAULT_SELECTION, 1, &tfSelection, &cFetched) != S_OK || cFetched != 1)
+        return S_FALSE;
+
+    if (_pContext->GetProperty(c_guidPropCustom, &pProperty) == S_OK)
+    {
+        CCustomPropertyStore *pCustomPropertyStore = new CCustomPropertyStore();
+        if (pCustomPropertyStore != NULL)
+            pProperty->SetValueStore(ec, tfSelection.range, pCustomPropertyStore);
+        pProperty->Release();
+    }
+
+    tfSelection.range->Release();
+    return S_OK;
+}
 ```
+
+在2.A.4小节的样例中，当客户端调用pprop->GetValue()方法获取属性值时，TSF管理器调用本节的ITfPropertyStore::GetData()方法，动态获取属性值。
+
+## 2.B.3 小结
+
+至此，微软早期的一个TSF输入法样例已全部介绍完毕。该样例官方链接已失效，读者如果想要获取原版样例，可以尝试在GitHub中，使用这些样例中的GUID进行搜索。<br/>
+不过，作者并没有改动多少源码，而且在doc目录中保存了原文档。<br/>
+该样例十分珍贵，至少对于作者而言是如此。
+
+早期，作者的水平不高，写ime输入法都是磕磕绊绊。TSF推出的时候，直接让作者放弃了。当时以为，这辈子学不会写输入法了。<br/>
+其实，这份源码，我原先也看过，实在搞不懂，这些都是干什么的。直到这次，我发现有文档，尝试的看了看，竟然发现，我看得懂英文了。<br/>
+不过，离写代码，还应该有很大距离。后面打算继续看微软拼音、启程和中州韵的源码，也有可能看谷歌拼音。
+
+终于，可以开始了。

@@ -162,7 +162,7 @@ Interface						|Description
 
 Interface						|Description
 -|-
-[ITfPropertyStore][38]			|属性存储。
+[ITfPropertyStore][38]			|属性存储，由TSF管理器用来提供非静态属性值。
 [ITfCreatePropertyStore][39]	|创建属性存储，本节未演示此接口。
 
 [38]: https://github.com/ChineseInputMethod/Interface/blob/master/TextService/ITfPropertyStore.md
